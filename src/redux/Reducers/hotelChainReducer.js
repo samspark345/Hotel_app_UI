@@ -1,11 +1,11 @@
 import React from 'react'
 import { GET_CHAIN_NAMES_ON_SUCCESS } from '../Actions/hotelChainActions'
 
-const initHighlightState = {
+const initHotelChainState = {
     hotelChainNames: ['malibu', 'reka','lema','boro', 'slander']
 }
 
-const hotelChainReducer = (state=initHighlightState, action) => {
+const hotelChainReducer = (state=initHotelChainState, action) => {
     switch(action.type){
         case(GET_CHAIN_NAMES_ON_SUCCESS) : {
 

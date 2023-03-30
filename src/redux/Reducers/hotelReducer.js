@@ -1,8 +1,7 @@
 import React from 'react'
-import { GET_HOTELS, GET_HOTELS_ON_SUCCESS } from '../Actions/hotelActions'
-import { GET_CHAIN_NAMES_ON_SUCCESS } from '../Actions/hotelChainActions'
+import { GET_HOTELS_ON_SUCCESS } from '../Actions/hotelActions'
 
-const initHighlightState = {
+const initHotelState = {
     hotels: [
         {hotelName: 'krebs', hotelChainName: 'malibu', city: 'fsjns fbsj'}, 
         {hotelName: 'msm', hotelChainName: 'reka', city: 'atlanta'},
@@ -12,7 +11,7 @@ const initHighlightState = {
     ]
 }
 
-const hotelReducer = (state=initHighlightState, action) => {
+const hotelReducer = (state=initHotelState, action) => {
     switch(action.type){
         case(GET_HOTELS_ON_SUCCESS) : {
 
