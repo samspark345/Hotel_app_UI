@@ -1,0 +1,32 @@
+.highlightsPageContainer{
+    position: relative;
+    min-height: 100vh;
+    background-color: #282c34;
+    padding-top: 130px;
+    display: flex;
+    flex-direction: column;
+}
+
+.highlightVids{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 5px;
+}
+
+.filterArea{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    align-items: stretch;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.filters{
+    padding: 5px;
+    width: 100%;
+}
