@@ -1,5 +1,5 @@
 import React from 'react'
-import { AUTHENTICATE_CUSTOMER_ON_SUCCESS, AUTHENTICATE_EMPLOYEE_ON_SUCCESS, AUTHENTICATE_ON_SUCCESS } from '../Actions/AuthenticateActions'
+import { AUTHENTICATE_CUSTOMER_ON_SUCCESS, AUTHENTICATE_EMPLOYEE_ON_SUCCESS } from '../Actions/AuthenticateActions'
 
 
 const initAuthState = {

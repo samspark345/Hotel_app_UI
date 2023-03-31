@@ -9,7 +9,8 @@ class GridwithData extends Component {
   constructor(props) {
     super(props);
     this.sizeToFit = this.sizeToFit.bind(this);
-    this.autoSizeAll = this.autoSizeAll.bind(this)
+    this.autoSizeAll = this.autoSizeAll.bind(this);
+    this.onGridReady = this.onGridReady.bind(this);
 
     this.state = {
       columnDefs: this.props.columnDefs,
@@ -33,7 +34,7 @@ class GridwithData extends Component {
     });
     this.gridColumnApi.autoSizeColumns(allColumnIds);
   }
-
+  //className="ag-theme-balham"
   render() {
     return (
       <div style={{ width: "100%", height: "100%" }}>
@@ -45,13 +46,14 @@ class GridwithData extends Component {
               height: "100%",
               width: "100%"
             }}
-            className="ag-theme-balham"
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
               enableColResize={true}
-              onGridReady={this.onGridReady.bind(this)}
+              onGridReady={this.onGridReady}
               rowData={this.state.rowData}
+              rowSelection="multiple"
+              rowMultiSelectWithClick= "true"
             />
           </div>
         </div>

@@ -5,7 +5,7 @@ import {
     Observer
 }from 'rxjs'
 import { mergeMap } from "rxjs/operators";
-import { AUTHENTICATE_CUSTOMER, AuthenticateCustomerOnSuccess, AUTHENTICATE_EMPLOYEE, AuthenticateEmployeeOnSuccess } from "../Actions/AuthenticateActions";
+import { AUTHENTICATE_CUSTOMER, AuthenticateCustomerOnSuccess, AUTHENTICATE_EMPLOYEE, AuthenticateEmployeeOnSuccess, SIGN_UP } from "../Actions/AuthenticateActions";
 import { GetHotelsOnSuccess, GET_HOTELS, GET_HOTELS_ON_SUCCESS } from "../Actions/hotelActions";
 import { GET_CHAIN_NAMES, GET_CHAIN_NAMES_ON_SUCCESS } from "../Actions/hotelChainActions";
 import { GET_CITY_FILTER, GET_HOTEL_NAMES, GET_ROOM_CAPACITY, GET_ROOM_COUNT_FILTER, POPULATE_ALL_FILTERS } from "../Actions/hotelFilterOptionsActions";
@@ -62,7 +62,21 @@ const AuthenticateEmployee = (action$, state$) =>
         })
     )
 
+const SignUp = (action$, state$) =>
+    action$.pipe(
+        ofType(SIGN_UP),
+        mergeMap((action) => {
+            return new Observable((observer) => {
+
+                axios.request(
+                    options
+                )
+            })
+        })
+    )
+
 export const hotelEpics = combineEpics(
     AuthenticateCustomer,
-    AuthenticateEmployee
+    AuthenticateEmployee,
+    SignUp
 )

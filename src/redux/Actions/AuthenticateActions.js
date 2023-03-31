@@ -2,6 +2,7 @@ export const AUTHENTICATE_CUSTOMER = 'AUTHENTICATE_CUSTOMER'
 export const AUTHENTICATE_CUSTOMER_ON_SUCCESS = 'AUTHENTICATE_CUSTOMER_ON_SUCCESS'
 export  const AUTHENTICATE_EMPLOYEE = 'AUTHENTICATE_EMPLOYEE'
 export const AUTHENTICATE_EMPLOYEE_ON_SUCCESS = 'AUTHENTICATE_EMPLOYEE_ON_SUCCESS'
+export const SIGN_UP = 'SIGN_up'
 
 
 
@@ -30,4 +31,10 @@ export function AuthenticateEmployeeOnSuccess(payload){
         type: AUTHENTICATE_EMPLOYEE_ON_SUCCESS,
         payload: payload
     }; 
+}
+
+export function SignUp(){
+    return{
+        type: SIGN_UP
+    }
 }

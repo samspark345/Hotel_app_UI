@@ -26,6 +26,7 @@ export class Hotels extends Component {
   render() {
     // console.log(this.props)
     //minimmum price and date 
+    console.log(this.props.hotelState)
     return (
       <div className='highlightsPageContainer'>
         <div className='filterArea'>

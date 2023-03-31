@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { Gethotels } from '../redux/Actions/hotelActions';
 import { populateAllFIlters } from '../redux/Actions/hotelFilterOptionsActions';
 import GridwithData from './GridwithData';
+import { Button } from '@mui/material';
 
 export class CustomerDashboard extends Component {
 
@@ -17,6 +18,14 @@ export class CustomerDashboard extends Component {
       { headerName: "Start Date", field: "startDate", resizable: "true" },
       { headerName: "End Date", field: "endDate", resizable: "true" },
       { headerName: "Total Cost", field: "totalCost", resizable: "true" },
+      {
+        headerName: 'Button Column',
+        cellRenderer: () => {
+          return (
+            <Button variant='contained' onClick={() => console.log('Deleted')}>Delete</Button>
+          );
+        },
+      },
     ]
 
   }

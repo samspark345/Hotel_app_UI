@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core";
 import './MultiSelectDropdown.css'
 import { green } from "@mui/material/colors";
 import styled from "@emotion/styled";
+import { useSelector, useDispatch } from "react-redux";
+import { ModifySelectedFilters } from "../redux/Actions/hotelActions";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,14 +38,17 @@ const WhiteBorderTextField = styled(MenuItem)`
 `;
 
 const  MultiSelectDropdown = ({label, options}) => {
-    console.log(label)
-  const classes = useStyles();
-  const [selected, setSelected] = useState([]);
+    const filterValues = useSelector(state => state.hotelState.selectedFilters);
+    const dispatch = useDispatch();
+    const classes = useStyles();
+    const [selected, setSelected] = useState([]);
 
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setSelected(value);
-    console.log(value)
+    const handleChange = (event) => {
+        const value = event.target.value;
+        setSelected(value);
+        filterValues[label] = value;
+        dispatch(ModifySelectedFilters({filterName: label, filterValue: value}))
+        console.log(value)
   };
 
   return (

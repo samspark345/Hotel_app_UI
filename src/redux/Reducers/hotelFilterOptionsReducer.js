@@ -13,7 +13,7 @@ const initHotelFilterState = {
     Amenities: ['room service', 'extendable', 'tv', 'a/c', 'fridge', 'wifi']
 }
 
-const hotelFilterReducer = (state=initHotelFilterState, action) => {
+const hotelFilterOptionReducer = (state=initHotelFilterState, action) => {
     switch(action.type){
 
         case(GET_HOTELS_ON_SUCCESS) : {
@@ -43,4 +43,4 @@ const hotelFilterReducer = (state=initHotelFilterState, action) => {
     }
 }
 
-export default hotelFilterReducer
+export default hotelFilterOptionReducer
