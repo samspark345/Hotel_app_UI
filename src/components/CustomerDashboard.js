@@ -11,23 +11,30 @@ import { Button } from '@mui/material';
 
 export class CustomerDashboard extends Component {
 
+  // {
+  //   headerName: 'Button Column',
+  //   cellRenderer: () => {
+  //     return (
+  //       <Button variant='contained' onClick={() => console.log('Deleted')}>Delete</Button>
+  //     );
+  //   },
+  // },
+
   state = {
     filters : [],
-    columnDefs : [
+    bookingColumnDefs : [
       { headerName: "Booking ID", field: "bookingId", resizable: "true" },
       { headerName: "Start Date", field: "startDate", resizable: "true" },
       { headerName: "End Date", field: "endDate", resizable: "true" },
       { headerName: "Total Cost", field: "totalCost", resizable: "true" },
-      {
-        headerName: 'Button Column',
-        cellRenderer: () => {
-          return (
-            <Button variant='contained' onClick={() => console.log('Deleted')}>Delete</Button>
-          );
-        },
-      },
-    ]
+    ],
 
+    rentingColumnDefs : [
+      { headerName: "Renting ID", field: "rentingId", resizable: "true" },
+      { headerName: "Start Date", field: "startDate", resizable: "true" },
+      { headerName: "End Date", field: "endDate", resizable: "true" },
+      { headerName: "Total Cost", field: "totalCost", resizable: "true" },
+    ]
   }
 
   componentDidMount(){
@@ -63,18 +70,45 @@ export class CustomerDashboard extends Component {
       // ...more bookings
     ];
 
+    const rentings = [
+      { rentingId: 1, startDate: '2023-04-01', endDate: '2023-04-05', totalCost: 500 },
+      { rentingId: 2, startDate: '2023-05-10', endDate: '2023-05-20', totalCost: 800 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      { rentingId: 3, startDate: '2023-06-15', endDate: '2023-06-20', totalCost: 300 },
+      // ...more bookings
+    ];
+
     const customerName = 'js'
     // console.log(this.props)
     //minimmum price and date 
     return (
       <div className='highlightsPageContainer'>
-        <div>
+        
           <h1>Welcome, {customerName}!</h1>
-          <div className="ag-theme-alpine" style={{ height: "500px", width: "100%" }}>
-            <GridwithData columnDefs ={this.state.columnDefs} rowData={bookings} />
 
+          
+          <div className="ag-theme-alpine" style={{ height: "500px", width: "100%", padding: '30px'}}>
+            <GridwithData columnDefs ={this.state.bookingColumnDefs} rowData={bookings} showDelete/>
           </div>
-        </div>
+
+          <div className="ag-theme-alpine" style={{ height: "500px", width: "100%", padding: '30px'}}>
+            <GridwithData columnDefs ={this.state.rentingColumnDefs} rowData={rentings}/>
+          </div>
       </div>
     )
   }

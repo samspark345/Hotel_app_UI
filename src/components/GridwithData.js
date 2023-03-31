@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { AgGridReact } from "ag-grid-react";
 import './GridwithData.css'
+import { Button } from "@mui/material";
 
 class GridwithData extends Component {
   constructor(props) {
@@ -11,11 +12,25 @@ class GridwithData extends Component {
     this.sizeToFit = this.sizeToFit.bind(this);
     this.autoSizeAll = this.autoSizeAll.bind(this);
     this.onGridReady = this.onGridReady.bind(this);
+    this.onSelectionChanged = this.onSelectionChanged.bind(this);
+    this.renderTopButtons = this.renderTopButtons.bind(this);
 
     this.state = {
       columnDefs: this.props.columnDefs,
-      rowData: this.props.rowData
+      rowData: this.props.rowData,
+      selectedRows : [],
+      disableDelete : true
     };
+  }
+  onSelectionChanged() {
+    const selectedRows = this.gridApi?.getSelectedRows();
+    const disableDeleteValue = selectedRows.length < 1? true : false
+    this.setState({
+        ...this.state,
+        selectedRows: selectedRows,
+        disableDelete: disableDeleteValue
+    })
+    console.log(selectedRows)
   }
 
   onGridReady(params) {
@@ -34,19 +49,49 @@ class GridwithData extends Component {
     });
     this.gridColumnApi.autoSizeColumns(allColumnIds);
   }
+
+  renderTopButtons(){
+    return(
+        <div className="buttonArea" 
+        style={{display: "flex", flexDirection: "row", width: '100%', padding: "5px", flexWrap:"wrap"}}
+        >
+            {this.props.showDelete? 
+                <div className="deleteButton" style={{padding: '5px'}}>
+                    {console.log(`the button value is ${this.state.disableDelete}`)}
+                    <Button variant="contained" 
+                    onClick={console.log('delete')}
+                    disabled={ this.state.disableDelete}
+                    >
+                        Delete</Button>
+                </div>
+                : null
+            }
+            <div className="deleteButton" style={{padding: '5px'}}>
+                    <Button variant="contained" onClick={this.sizeToFit}>Size to Fit</Button>
+            </div>
+            <div className="deleteButton" style={{padding: '5px'}}>
+                    <Button variant="contained" onClick={this.autoSizeAll}>Auto-Size All</Button>
+            </div>
+        </div>
+        
+    )
+  }
   //className="ag-theme-balham"
   render() {
     return (
-      <div style={{ width: "100%", height: "100%" }}>
+      <div style={{ width: "100%", height: "100%"}}>
         <div class="grid-wrapper">
           <div
             id="myGrid"
             style={{
               boxSizing: "border-box",
               height: "100%",
-              width: "100%"
+              width: "100%",
+              whiteSpace: 'normal'
             }}
           >
+            <h1 style={{textAlign: "center"}}>brfshbn</h1>
+            {this.renderTopButtons()}
             <AgGridReact
               columnDefs={this.state.columnDefs}
               enableColResize={true}
@@ -54,12 +99,11 @@ class GridwithData extends Component {
               rowData={this.state.rowData}
               rowSelection="multiple"
               rowMultiSelectWithClick= "true"
+              onSelectionChanged={this.onSelectionChanged}
             />
           </div>
         </div>
         <div>
-          <button onClick={this.sizeToFit.bind(this)}>Size to Fit</button>
-          <button onClick={this.autoSizeAll.bind(this)}>Auto-Size All</button>
         </div>
       </div>
     );

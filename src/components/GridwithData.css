@@ -1,6 +1,7 @@
 .grid-wrapper {
     height: 100%;
-    padding-top: 26px;
+    padding: 50px;
+    padding-bottom: 70px;
     box-sizing: border-box;
 }
 

@@ -16,53 +16,53 @@ export function GetCustomerBooking(){
     }; 
 }
 
-export function GetCityFilterOnSuccess(payload){
+export function GetCustomerBookingOnSuccess(payload){
     return {
-        type: GET_CITY_FILTER_ON_SUCCESS,
+        type: GET_CUSTOMER_BOOKINGS_ON_SUCCESS,
         payload: payload
     }; 
 }
 
-export function GetRoomCapacity(){
+export function GetCustomerRents(){
     return {
-        type: GET_ROOM_CAPACITY
+        type: GET_CUSTOMER_RENTS
     }; 
 }
 
-export function GetRoomCapacityOnSuccess(payload){
+export function GetCustomerRentsOnSuccess(payload){
     return {
-        type: GET_ROOM_CAPACITY_ON_SUCCESS,
+        type: GET_CUSTOMER_RENTS_ON_SUCCESS,
         payload: payload
     }; 
 }
-export function GetHotelNames(){
+export function GetCustomerBookArchives(){
     return {
-        type: GET_HOTEL_NAMES
+        type: GET_CUSTOMER_BOOKING_ARCHIVES
     }; 
 }
 
-export function GetHotelNamesOnSuccess(payload){
+export function GetCustomerBookArchivesOnSuccess(payload){
     return {
-        type: GET_HOTEL_NAMES_ON_SUCCESS,
+        type: GET_CUSTOMER_BOOKING_ARCHIVES_ON_SUCCESS,
         payload: payload
     }; 
 }
-export function GetRoomCount(){
+export function GetCustomerRentsArchives(){
     return {
-        type: GET_ROOM_COUNT_FILTER
+        type: GET_CUSTOMER_RENTING_ARCHIVES
     }; 
 }
 
-export function GetRoomCountOnSuccess(payload){
+export function GetCustomerRentsArchivesOnSuccess(payload){
     return {
-        type: GET_ROOM_COUNT_FILTER_ON_SUCCESS,
+        type: GET_CUSTOMER_RENTING_ARCHIVES_ON_SUCCESS,
         payload: payload
     }; 
 }
 
-export function populateAllFIlters(payload){
-    return {
-        type: POPULATE_ALL_FILTERS,
-        payload: payload
-    }; 
-}
+// export function populateAllFIlters(payload){
+//     return {
+//         type: POPULATE_ALL_FILTERS,
+//         payload: payload
+//     }; 
+// }
