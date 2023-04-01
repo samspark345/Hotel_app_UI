@@ -3,19 +3,13 @@ import { GET_HOTELS_ON_SUCCESS, MODIFY_SELECTED_FILTERS } from '../Actions/hotel
 
 
 const initHotelState = {
-    hotels: [
-        {hotelName: 'krebs', hotelChainName: 'malibu', city: 'fsjns fbsj'}, 
-        {hotelName: 'msm', hotelChainName: 'reka', city: 'atlanta'},
-        {hotelName: 'frsna', hotelChainName: 'lema', city: 'ottawa'},
-        {hotelName: 'nggsk', hotelChainName: 'boro', city: 'toronto'},
-        {hotelName: 'hilton', hotelChainName: 'slander', city: 'winnipeg'}
-    ],
+    hotels: [],
     selectedFilters : {
         Room_Capacity: [],
-        Hotel_Chain: [],
-        City: [],
+        chain_name: [],
+        city: [],
         No_Of_Rooms: [],
-        Star_No: [],
+        star_rating: [],
         Views: [],
         Amenities: []
     }
@@ -27,11 +21,11 @@ const hotelReducer = (state=initHotelState, action) => {
 
             return({
                 ...state,
-                hotels: action.payload.hotels
+                hotels: action.payload
             })
         }
 
-        
+
         case(MODIFY_SELECTED_FILTERS) : {
             if(action.payload.filterName == 'Room_Capacity') {
                 return({

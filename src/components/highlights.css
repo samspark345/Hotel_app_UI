@@ -2,8 +2,8 @@
     position: relative;
     min-height: 100vh;
     padding-bottom: 100px;
-    background-color: #282c34;
-    padding-top: 130px;
+    background-color: lightgoldenrodyellow;
+    padding-top: 100px;
     display: flex;
     flex-direction: column;
 }
@@ -13,8 +13,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    justify-content: center;
-    gap: 5px;
+    justify-content: stretch;
+    gap: 40px;
 }
 
 .filterArea{

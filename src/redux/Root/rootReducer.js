@@ -8,7 +8,7 @@ import hotelReducer from '../Reducers/hotelReducer'
 const rootReducer = combineReducers({
     hotelChainState: hotelChainReducer,
     hotelState: hotelReducer,
-    hotelFilters: hotelFilterOptionReducer,
+    hotelFiltersOptions: hotelFilterOptionReducer,
     User: authenticateReducer
 })
 export default rootReducer

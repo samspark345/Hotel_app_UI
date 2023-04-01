@@ -12,13 +12,25 @@ import { GET_CHAIN_NAMES, GET_CHAIN_NAMES_ON_SUCCESS } from "../Actions/hotelCha
 //     request  
 // }
 
+// fetch('http://localhost:3000/queries/hotels')
+                // .then(response => {
+                //     console.log("herer")
+                //     // var data = JSON.parse(response)
+                //     // console.log(response.json)
+                //     // console.log(response.body)
+                //     return response.json();
+                // })
+                // .then((data) =>{ 
+                //     console.log("here")
+                //     console.log(data)
+                //     observer.next(GetHotelsOnSuccess(data.rows));
+                //     observer.complete()
+                //     console.log(state$.value)
+                //  })
+
 const options = {
     method: 'GET',
-    url: 'https://free-football-soccer-videos.p.rapidapi.com/',
-    headers: {
-      'X-RapidAPI-Key': 'cf6b34c19dmsh3dbdfa1aa1df656p1f0957jsnae47a75e33ea',
-      'X-RapidAPI-Host': 'free-football-soccer-videos.p.rapidapi.com'
-    }
+    url: 'http://localhost:3000/queries/hotels',
 };
   
 
@@ -27,15 +39,14 @@ const getHotels = (action$, state$) =>
         ofType(GET_HOTELS),
         mergeMap((action) => {
             return new Observable((observer) => {
-
+                console.log('dispatched')
                 axios.request(
                     options
                 ).then((response) => {
-                    console.log(response.data)
-                    observer.next(GetHotelsOnSuccess(response.data));
+                    console.log(response)
+                    observer.next(GetHotelsOnSuccess(response.data.rows));
                     observer.complete()
                     console.log(state$.value)
-                    // observer.next(IncreaseVideosToGet(response.data.));
                 })
             })
         })
@@ -53,5 +64,5 @@ const getHotelsDummy = (action$, state$) =>
     )
 
 export const hotelEpics = combineEpics(
-    getHotelsDummy
+    getHotels
 )

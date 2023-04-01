@@ -1,8 +1,9 @@
 .grid-wrapper {
     height: 100%;
-    padding: 50px;
-    padding-bottom: 70px;
-    box-sizing: border-box;
+    /* padding: 50px; */
+    /* padding-bottom: 70px; */
+    /* background-color: red; */
+    /* box-sizing: border-box; */
 }
 
 .button-bar {

@@ -59,14 +59,14 @@ class GridwithData extends Component {
                 <div className="deleteButton" style={{padding: '5px'}}>
                     {console.log(`the button value is ${this.state.disableDelete}`)}
                     <Button variant="contained" 
-                    onClick={console.log('delete')}
+                    onClick={()=>{console.log('delete')}}
                     disabled={ this.state.disableDelete}
                     >
                         Delete</Button>
                 </div>
                 : null
             }
-            <div className="deleteButton" style={{padding: '5px'}}>
+            <div className="sizeToFit" style={{padding: '5px'}}>
                     <Button variant="contained" onClick={this.sizeToFit}>Size to Fit</Button>
             </div>
             <div className="deleteButton" style={{padding: '5px'}}>
@@ -79,32 +79,31 @@ class GridwithData extends Component {
   //className="ag-theme-balham"
   render() {
     return (
-      <div style={{ width: "100%", height: "100%"}}>
-        <div class="grid-wrapper">
-          <div
+        <div style={{ width: "100%", height: "100%"}}>
+            <div
             id="myGrid"
             style={{
-              boxSizing: "border-box",
-              height: "100%",
-              width: "100%",
-              whiteSpace: 'normal'
+                boxSizing: "border-box",
+                height: "100%",
+                width: "100%"
             }}
-          >
-            <h1 style={{textAlign: "center"}}>brfshbn</h1>
-            {this.renderTopButtons()}
-            <AgGridReact
-              columnDefs={this.state.columnDefs}
-              enableColResize={true}
-              onGridReady={this.onGridReady}
-              rowData={this.state.rowData}
-              rowSelection="multiple"
-              rowMultiSelectWithClick= "true"
-              onSelectionChanged={this.onSelectionChanged}
-            />
-          </div>
-        </div>
-        <div>
-        </div>
+            className="ag-theme-alpine"
+            >
+                <div class="grid-wrapper">
+                    <h1 style={{textAlign: "center"}}>brfshbn</h1>
+                    {this.renderTopButtons()}
+                    <AgGridReact
+                    columnDefs={this.state.columnDefs}
+                    enableColResize={true}
+                    onGridReady={this.onGridReady}
+                    rowData={this.state.rowData}
+                    rowSelection="multiple"
+                    rowMultiSelectWithClick= "true"
+                    onSelectionChanged={this.onSelectionChanged}
+                    />
+                </div>
+
+            </div>
       </div>
     );
   }

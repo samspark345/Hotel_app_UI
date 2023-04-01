@@ -102,11 +102,12 @@ export class CustomerDashboard extends Component {
           <h1>Welcome, {customerName}!</h1>
 
           
-          <div className="ag-theme-alpine" style={{ height: "500px", width: "100%", padding: '30px'}}>
+          <div style={{ height: "500px", width: "100%", padding: '100px', alignSelf: 'center', justifyContent: 'center'}}>
             <GridwithData columnDefs ={this.state.bookingColumnDefs} rowData={bookings} showDelete/>
           </div>
-
-          <div className="ag-theme-alpine" style={{ height: "500px", width: "100%", padding: '30px'}}>
+          
+          
+          <div style={{ height: "500px", width: "100%", position: 'relative', padding: '200px', alignSelf: 'center', justifyContent: 'center'}}>
             <GridwithData columnDefs ={this.state.rentingColumnDefs} rowData={rentings}/>
           </div>
       </div>

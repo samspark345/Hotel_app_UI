@@ -30,8 +30,8 @@ export class Hotels extends Component {
     return (
       <div className='highlightsPageContainer'>
         <div className='filterArea'>
-          {Object.keys(this.props.hotelFilters).map((labels) => {
-            const optionToDisplay = this.props.hotelFilters[labels].length != 0? this.props.hotelFilters[labels] : ['first', 'second','third', 'fourth', 'fifth', 'sixth', 'seventh'];
+          {Object.keys(this.props.hotelFiltersOptions).map((labels) => {
+            const optionToDisplay = this.props.hotelFiltersOptions[labels].length != 0? this.props.hotelFiltersOptions[labels] : ['first', 'second','third', 'fourth', 'fifth', 'sixth', 'seventh'];
             return (
               
               <MultiSelectDropdown className='filters' label={labels} options={optionToDisplay} />
@@ -57,7 +57,7 @@ const mapStateToProps = (state) => {
   console.log(state)
   return {
     hotelState: state.hotelState,
-    hotelFilters: state.hotelFilters
+    hotelFiltersOptions: state.hotelFiltersOptions
   }
 };
  
