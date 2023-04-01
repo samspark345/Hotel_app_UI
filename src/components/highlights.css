@@ -13,9 +13,10 @@
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    justify-content: stretch;
+    justify-content: center;
     gap: 40px;
 }
+
 
 .filterArea{
     display: flex;

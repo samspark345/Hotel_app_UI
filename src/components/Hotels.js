@@ -44,7 +44,7 @@ export class Hotels extends Component {
           {this.props.hotelState?.hotels.map((myHotel) => {
             // console.log(this.props)
             return (
-              <HotelCards {...myHotel} />
+              <HotelCards {...myHotel} className='hotelCard' />
             )
           })}
         </div>
