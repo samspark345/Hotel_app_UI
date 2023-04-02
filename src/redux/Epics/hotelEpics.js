@@ -30,7 +30,7 @@ import { GET_CHAIN_NAMES, GET_CHAIN_NAMES_ON_SUCCESS } from "../Actions/hotelCha
 
 const options = {
     method: 'GET',
-    url: 'http://localhost:3000/queries/hotels',
+    url: 'http://localhost:3001/queries/hotels',
 };
   
 

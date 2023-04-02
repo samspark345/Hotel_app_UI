@@ -20,6 +20,16 @@
 
 .filterArea{
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+    align-items: stretch;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+.DropdownFilterArea{
+    display: flex;
     flex-wrap: wrap;
     padding: 10px;
     align-items: stretch;

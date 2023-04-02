@@ -11,7 +11,10 @@ const initHotelState = {
         No_Of_Rooms: [],
         star_rating: [],
         Views: [],
-        Amenities: []
+        Amenities: [],
+        country: [],
+        Start_date: [],
+        End_date: []
     }
 }
 
@@ -82,7 +85,38 @@ const hotelReducer = (state=initHotelState, action) => {
                     }
                 })
             }
-            else{return state}
+            else if(action.payload.filterName == 'country') {
+                return({
+                    ...state,
+                    selectedFilters: {
+                        ...state.selectedFilters,
+                        country: action.payload.filterValue
+                    }
+                })
+            }
+            else if(action.payload.filterName == 'Start_Date') {
+                console.log('here')
+                return({
+                    ...state,
+                    selectedFilters: {
+                        ...state.selectedFilters,
+                        Start_date: action.payload.filterValue
+                    }
+                    
+                })
+            }
+            else if(action.payload.filterName == 'End_Date') {
+                return({
+                    ...state,
+                    selectedFilters: {
+                        ...state.selectedFilters,
+                        End_date: action.payload.filterValue
+                    }
+                })
+            }
+            else{
+                console.log(action.payload)
+                return state}
             
         }
 
