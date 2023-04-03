@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { ModifySelectedFilters } from '../redux/Actions/hotelActions';
 
 
-export default function TextFieldBox() {
+export default function PriceForm() {
 
     const [minPrice, setMinPrice] = React.useState('');
     const [maxPrice, setMaxPrice] = React.useState('');
@@ -37,11 +37,11 @@ export default function TextFieldBox() {
         autoComplete="off"
         >
             <FormControl fullWidth sx={{ m: 5 }}>
-            <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-amount">Min Price</InputLabel>
             <OutlinedInput
                 id="outlined-adornment-amount"
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                label="Amount"
+                label="Min_price"
                 value={minPrice}
                 type="number"
                 onChange={handleMinPriceChange}
@@ -49,11 +49,11 @@ export default function TextFieldBox() {
             </FormControl>
 
             <FormControl fullWidth sx={{ m: 5 }}>
-            <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-amount">Max Price</InputLabel>
             <OutlinedInput
                 id="outlined-adornment-amount"
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                label="Amount"
+                label="Max_price"
                 value={maxPrice}
                 type="number"
                 onChange={handleMaxPriceChange}

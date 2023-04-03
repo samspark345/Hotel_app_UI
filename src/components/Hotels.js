@@ -11,7 +11,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import DateForm from './DateForm';
 import { red } from '@mui/material/colors';
-import TextFieldBox from './TextFieldBox';
+import PriceForm from './PriceForm';
 export class Hotels extends Component {
 
   
@@ -60,7 +60,7 @@ export class Hotels extends Component {
           </div>
           <div style={{display:'flex', width: '100%', justifyContent: 'center'}}>
             <DateForm label={'Start_Date'} handleDateChange={this.handleDateChange}/>  <DateForm label={'End_Date'} handleDateChange={this.handleDateChange}/>
-            <TextFieldBox />
+            <PriceForm />
           </div>
           
         </div>
