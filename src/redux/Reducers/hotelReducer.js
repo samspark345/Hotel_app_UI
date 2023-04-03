@@ -13,8 +13,10 @@ const initHotelState = {
         Views: [],
         Amenities: [],
         country: [],
-        Start_date: [],
-        End_date: []
+        Start_date: '',
+        End_date: '',
+        Min_price: '',
+        Max_Price: ''
     }
 }
 
@@ -30,7 +32,7 @@ const hotelReducer = (state=initHotelState, action) => {
 
 
         case(MODIFY_SELECTED_FILTERS) : {
-            if(action.payload.filterName == 'Room_Capacity') {
+            if(action.payload.filterName === 'Room_Capacity') {
                 return({
                     ...state,
                     selectedFilters: {
@@ -40,7 +42,7 @@ const hotelReducer = (state=initHotelState, action) => {
                 })
             }
 
-            else if(action.payload.filterName == 'Hotel_Chain') {
+            else if(action.payload.filterName === 'Hotel_Chain') {
                 return({
                     ...state,
                     selectedFilters: {
@@ -49,7 +51,7 @@ const hotelReducer = (state=initHotelState, action) => {
                     }
                 })
             }
-            else if(action.payload.filterName == 'No_Of_Rooms') {
+            else if(action.payload.filterName === 'No_Of_Rooms') {
                 return({
                     ...state,
                     selectedFilters: {
@@ -58,7 +60,7 @@ const hotelReducer = (state=initHotelState, action) => {
                     }
                 })
             }
-            else if(action.payload.filterName == 'Star_No') {
+            else if(action.payload.filterName === 'Star_No') {
                 return({
                     ...state,
                     selectedFilters: {
@@ -67,7 +69,7 @@ const hotelReducer = (state=initHotelState, action) => {
                     }
                 })
             }
-            else if(action.payload.filterName == 'Views') {
+            else if(action.payload.filterName === 'Views') {
                 return({
                     ...state,
                     selectedFilters: {
@@ -76,7 +78,7 @@ const hotelReducer = (state=initHotelState, action) => {
                     }
                 })
             }
-            else if(action.payload.filterName == 'Amenities') {
+            else if(action.payload.filterName === 'Amenities') {
                 return({
                     ...state,
                     selectedFilters: {
@@ -85,7 +87,7 @@ const hotelReducer = (state=initHotelState, action) => {
                     }
                 })
             }
-            else if(action.payload.filterName == 'country') {
+            else if(action.payload.filterName === 'country') {
                 return({
                     ...state,
                     selectedFilters: {
@@ -94,7 +96,7 @@ const hotelReducer = (state=initHotelState, action) => {
                     }
                 })
             }
-            else if(action.payload.filterName == 'Start_Date') {
+            else if(action.payload.filterName === 'Start_Date') {
                 console.log('here')
                 return({
                     ...state,
@@ -105,12 +107,30 @@ const hotelReducer = (state=initHotelState, action) => {
                     
                 })
             }
-            else if(action.payload.filterName == 'End_Date') {
+            else if(action.payload.filterName === 'End_Date') {
                 return({
                     ...state,
                     selectedFilters: {
                         ...state.selectedFilters,
                         End_date: action.payload.filterValue
+                    }
+                })
+            }
+            else if(action.payload.filterName === 'Min_price') {
+                return({
+                    ...state,
+                    selectedFilters: {
+                        ...state.selectedFilters,
+                        Min_Price: action.payload.filterValue
+                    }
+                })
+            }
+            else if(action.payload.filterName === 'Max_price') {
+                return({
+                    ...state,
+                    selectedFilters: {
+                        ...state.selectedFilters,
+                        Max_Price: action.payload.filterValue
                     }
                 })
             }
