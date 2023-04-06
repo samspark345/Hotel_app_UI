@@ -14,6 +14,7 @@ class GridwithData extends Component {
     this.onGridReady = this.onGridReady.bind(this);
     this.onSelectionChanged = this.onSelectionChanged.bind(this);
     this.renderTopButtons = this.renderTopButtons.bind(this);
+    this.gridLabel = this.props.gridLabel
 
     this.state = {
       columnDefs: this.props.columnDefs,
@@ -89,7 +90,7 @@ class GridwithData extends Component {
             className="ag-theme-alpine"
             >
                 <div class="grid-wrapper">
-                    <h1 style={{textAlign: "center"}}>brfshbn</h1>
+                    <h1 style={{textAlign: "center"}}>{this.gridLabel}</h1>
                     {this.renderTopButtons()}
                     <AgGridReact
                     columnDefs={this.state.columnDefs}

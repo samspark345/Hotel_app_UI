@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import  Hotels  from './components/Hotels';
 import CustomerDashboard from './components/CustomerDashboard';
 import HotelRooms from './components/HotelRooms';
+import BookingPage from './components/BookingPage';
 
 
 const RenderLayout = ({children}) => {
@@ -55,6 +56,15 @@ function App() {
             element={
               <RenderLayout>
                 <CustomerDashboard />
+              </RenderLayout>
+            } 
+          />
+
+          <Route 
+            exact path='/Booking' 
+            element={
+              <RenderLayout>
+                <BookingPage />
               </RenderLayout>
             } 
           />
