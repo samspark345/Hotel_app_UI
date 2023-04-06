@@ -1,23 +1,17 @@
 import React from 'react'
-import { GET_HOTELS_ON_SUCCESS, MODIFY_SELECTED_FILTERS } from '../Actions/hotelActions'
+import { APPLY_HOTEL_FILTERS_ON_SUCCESS, FILTER_HOTEL_RESULT_ON_SUCCESS, GET_HOTELS_ON_SUCCESS, MODIFY_SELECTED_HOTEL_FILTERS, MODIFY_SELECTED_ROOM_FILTERS, SELECT_HOTEL } from '../Actions/hotelActions'
 
 
 const initHotelState = {
     hotels: [],
     selectedFilters : {
-        Room_Capacity: [],
         chain_name: [],
-        city: [],
         No_Of_Rooms: [],
+        city: [],
         star_rating: [],
-        Views: [],
-        Amenities: [],
         country: [],
-        Start_date: '',
-        End_date: '',
-        Min_price: '',
-        Max_Price: ''
-    }
+    },
+    
 }
 
 const hotelReducer = (state=initHotelState, action) => {
@@ -30,24 +24,24 @@ const hotelReducer = (state=initHotelState, action) => {
             })
         }
 
+        case(APPLY_HOTEL_FILTERS_ON_SUCCESS) : {
 
-        case(MODIFY_SELECTED_FILTERS) : {
-            if(action.payload.filterName === 'Room_Capacity') {
+            return({
+
+                ...state,
+                hotels: action.payload
+            })
+        }
+
+
+        case(MODIFY_SELECTED_HOTEL_FILTERS) : {
+
+            if(action.payload.filterName === 'chain_name') {
                 return({
                     ...state,
                     selectedFilters: {
                         ...state.selectedFilters,
-                        Room_Capacity: action.payload.filterValue
-                    }
-                })
-            }
-
-            else if(action.payload.filterName === 'Hotel_Chain') {
-                return({
-                    ...state,
-                    selectedFilters: {
-                        ...state.selectedFilters,
-                        Hotel_Chain: action.payload.filterValue
+                        chain_name: action.payload.filterValue
                     }
                 })
             }
@@ -60,30 +54,12 @@ const hotelReducer = (state=initHotelState, action) => {
                     }
                 })
             }
-            else if(action.payload.filterName === 'Star_No') {
+            else if(action.payload.filterName === 'star_rating') {
                 return({
                     ...state,
                     selectedFilters: {
                         ...state.selectedFilters,
-                        Star_No: action.payload.filterValue
-                    }
-                })
-            }
-            else if(action.payload.filterName === 'Views') {
-                return({
-                    ...state,
-                    selectedFilters: {
-                        ...state.selectedFilters,
-                        Views: action.payload.filterValue
-                    }
-                })
-            }
-            else if(action.payload.filterName === 'Amenities') {
-                return({
-                    ...state,
-                    selectedFilters: {
-                        ...state.selectedFilters,
-                        Amenities: action.payload.filterValue
+                        star_rating: action.payload.filterValue
                     }
                 })
             }
@@ -96,44 +72,17 @@ const hotelReducer = (state=initHotelState, action) => {
                     }
                 })
             }
-            else if(action.payload.filterName === 'Start_Date') {
-                console.log('here')
+
+            else if(action.payload.filterName === 'city') {
                 return({
                     ...state,
                     selectedFilters: {
                         ...state.selectedFilters,
-                        Start_date: action.payload.filterValue
-                    }
-                    
-                })
-            }
-            else if(action.payload.filterName === 'End_Date') {
-                return({
-                    ...state,
-                    selectedFilters: {
-                        ...state.selectedFilters,
-                        End_date: action.payload.filterValue
+                        city: action.payload.filterValue
                     }
                 })
             }
-            else if(action.payload.filterName === 'Min_price') {
-                return({
-                    ...state,
-                    selectedFilters: {
-                        ...state.selectedFilters,
-                        Min_Price: action.payload.filterValue
-                    }
-                })
-            }
-            else if(action.payload.filterName === 'Max_price') {
-                return({
-                    ...state,
-                    selectedFilters: {
-                        ...state.selectedFilters,
-                        Max_Price: action.payload.filterValue
-                    }
-                })
-            }
+           
             else{
                 console.log(action.payload)
                 return state}

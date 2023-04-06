@@ -6,9 +6,26 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './hotelCard.css'
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { selectHotel } from '../redux/Actions/hotelRoomActions';
+
+
+const sendHotelInfo = (hotelInfo, dispatch) => {
+    console.log(hotelInfo)
+    dispatch(selectHotel({
+        chain_name: hotelInfo.chain_name,
+        city: hotelInfo.city,
+        country: hotelInfo.country,
+        hotel_id: hotelInfo.hotel_id,
+        address: hotelInfo.address
+    }))
+}
+
+
 
 export default function HotelCards({
-    hotelid,
+    hotel_id,
     star_rating,
     chain_name, 
     country,
@@ -19,6 +36,7 @@ export default function HotelCards({
     email,
     phone_number
 }) {
+    const dispatch = useDispatch()
   return (
     <div className='hotelCard'>
         <Card sx={{ maxWidth: 400, minWidth: 300 }}>
@@ -56,7 +74,16 @@ export default function HotelCards({
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
+                <Link to='/Rooms' style={{textDecoration: 'none'}} 
+                onClick={() => sendHotelInfo({
+                    chain_name: chain_name,
+                    city: city,
+                    country: country,
+                    hotel_id: hotel_id,
+                    address: `${street_number} ${street_name}`
+                }, dispatch)} >
+                    <Button size="small">Rooms</Button>
+                </Link>
                 <Button size="small">Learn More</Button>
             </CardActions>
         </Card>

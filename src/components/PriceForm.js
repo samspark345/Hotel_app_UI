@@ -7,6 +7,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useDispatch } from 'react-redux';
 import { ModifySelectedFilters } from '../redux/Actions/hotelActions';
+import { ModifySelectedRoomFilters } from '../redux/Actions/hotelRoomActions';
 
 
 export default function PriceForm() {
@@ -18,13 +19,14 @@ export default function PriceForm() {
     const handleMinPriceChange = (event) => {
         setMinPrice(event.target.value);
         // console.log(event.target.value)
-        dispatch(ModifySelectedFilters({filterName: 'Min_price', filterValue: event.target.value}))
+        
+        dispatch(ModifySelectedRoomFilters({filterName: 'Min_price', filterValue: event.target.value}))
     };
 
     const handleMaxPriceChange = (event) => {
         setMaxPrice(event.target.value);
         // console.log(event.target.value)
-        dispatch(ModifySelectedFilters({filterName: 'Max_price', filterValue: event.target.value}))
+        dispatch(ModifySelectedRoomFilters({filterName: 'Max_price', filterValue: event.target.value}))
     };
     return (
         <Box
@@ -43,7 +45,9 @@ export default function PriceForm() {
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
                 label="Min_price"
                 value={minPrice}
+                error={minPrice < 0 && minPrice > maxPrice}
                 type="number"
+                inputProps={{min : 0}}
                 onChange={handleMinPriceChange}
             />
             </FormControl>
@@ -55,6 +59,8 @@ export default function PriceForm() {
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
                 label="Max_price"
                 value={maxPrice}
+                error={maxPrice < 0 && minPrice > maxPrice}
+                inputProps={{min : 0}}
                 type="number"
                 onChange={handleMaxPriceChange}
             />

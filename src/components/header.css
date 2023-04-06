@@ -22,9 +22,21 @@
     align-items: center;
 }
 
-.headerLogo{
+/* .logo{
+    padding: 10px;
+    box-sizing: border-box;
     object-fit: cover;
     width: 100px;
+    color: white;
+    height: auto;
+} */
+
+.headerLogo{
+    /* background-color: red; */
+    padding: 10px;
+    object-fit: fill;
+    width: 100px;
+    color: white;
     height: auto;
 }
 
@@ -45,13 +57,15 @@
     text-decoration: none;
     color: white;
     float: left;
-    padding: 15px;
+    font-size: large;
+    padding: 20px 35px;
 }
 
 .navbarItems a:hover{
     color: yellow;
     cursor: pointer;
 }
+
 
 .navbarItems  ul{
    /* list-style: none;

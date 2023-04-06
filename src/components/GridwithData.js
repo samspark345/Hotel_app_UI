@@ -55,7 +55,7 @@ class GridwithData extends Component {
         <div className="buttonArea" 
         style={{display: "flex", flexDirection: "row", width: '100%', padding: "5px", flexWrap:"wrap"}}
         >
-            {this.props.showDelete? 
+            {this.props.showDelete && 
                 <div className="deleteButton" style={{padding: '5px'}}>
                     {console.log(`the button value is ${this.state.disableDelete}`)}
                     <Button variant="contained" 
@@ -64,7 +64,6 @@ class GridwithData extends Component {
                     >
                         Delete</Button>
                 </div>
-                : null
             }
             <div className="sizeToFit" style={{padding: '5px'}}>
                     <Button variant="contained" onClick={this.sizeToFit}>Size to Fit</Button>

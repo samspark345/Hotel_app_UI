@@ -37,18 +37,20 @@ const WhiteBorderTextField = styled(MenuItem)`
     }
 `;
 
-const  MultiSelectDropdown = ({label, options}) => {
+const  MultiSelectDropdown = ({label, options, onChange, singleSelect}) => {
     const filterValues = useSelector(state => state.hotelState.selectedFilters);
     const dispatch = useDispatch();
     const classes = useStyles();
     const [selected, setSelected] = useState([]);
 
     const handleChange = (event) => {
-        const value = event.target.value;
-        setSelected(value);
-        filterValues[label] = value;
-        dispatch(ModifySelectedFilters({filterName: label, filterValue: value}))
-        console.log(value)
+
+        const value = singleSelect? 
+        (event.target.value[event.target.value.length -1] != undefined? [event.target.value[event.target.value.length -1]] : []) 
+        : event.target.value;
+
+        setSelected(value)
+        onChange && onChange({filterName: label, filterValue: value})
   };
 
   return (
@@ -65,7 +67,7 @@ const  MultiSelectDropdown = ({label, options}) => {
             {options.map((option) => (
             <MenuItem key={option} value={option}>
                 <ListItemIcon>
-                <Checkbox checked={selected.indexOf(option) > -1} />
+                {!singleSelect && <Checkbox checked={selected.indexOf(option) > -1} />}
                 </ListItemIcon>
                 <ListItemText primary={option} />
             </MenuItem>

@@ -6,15 +6,14 @@ const Header = () => {
   return (
       <div className='nav'>
         <div className='logo'>
-          <img src={require('../images/logo.png')}  alt='' className='headerLogo'></img>
+        <NavLink end to='/hotels'> 
+          <img src={require('../images/logoHotels.png')}  alt='' className='headerLogo'></img>
+        </NavLink>
         </div>
         <div className='navbarItems'>
-          <NavLink end to='/'> Home </NavLink>
-          <NavLink end to='/highlights'> Highlights </NavLink>
-          <NavLink end to='/'> Home </NavLink>
-          <NavLink end to='/'> Home </NavLink>
-          <NavLink end to='/'> Home </NavLink>
-          <NavLink end to='/'> Home </NavLink>
+          <NavLink end to='/hotels'> Hotels </NavLink>
+          <NavLink end to='/Dashboard'> MyBookings </NavLink>
+          <NavLink end to='/Dashboard'> MyAccount </NavLink>
         </div>
       </div>
   )
