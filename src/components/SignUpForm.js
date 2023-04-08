@@ -99,6 +99,7 @@ const SignUpForm = () => {
         required
         name="phone_number"
         label="Phone Number"
+        inputProps={{pattern: "[0-9]{10}" }}
         value={formState.phone_number}
         onChange={handleChange}
       />
@@ -106,6 +107,7 @@ const SignUpForm = () => {
         required
         name="email"
         label="Email"
+        type="email"
         value={formState.email}
         onChange={handleChange}
       />
@@ -114,6 +116,7 @@ const SignUpForm = () => {
         name="password"
         label="Password"
         type="password"
+        inputProps={{pattern: ".{5,}" }}
         value={formState.password}
         onChange={handleChange}
       />
@@ -122,6 +125,7 @@ const SignUpForm = () => {
         required
         name="confirmPassword"
         label="ConfirmPassword"
+        inputProps={{pattern: ".{5,}" }}
         type="password"
         value={formState.confirmPassword}
         error={formState.confirmPassword != formState.password}
@@ -166,6 +170,7 @@ const SignUpForm = () => {
         required
         name="ssn_sin"
         label="SSN/SIN"
+        inputProps={{pattern: "[0-9]{9}" }}
         value={formState.ssn_sin}
         onChange={handleChange}
       />
