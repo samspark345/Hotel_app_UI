@@ -82,7 +82,7 @@ const SignUp = (action$, state$) =>
                 options.data = {
                     first_name: first_name,
                     last_name: last_name,
-                    phone_number: phone_number,
+                    phone_number: `${area_code}-${phone_number}`,
                     email: email,
                     address_country: address_country,
                     address_city: address_city,
@@ -90,8 +90,7 @@ const SignUp = (action$, state$) =>
                     address_street_number: address_street_number,
                     address_unit_number: address_unit_number,
                     ssn_sin: ssn_sin,
-                    password: password,
-                    area_code: area_code,   
+                    password: password,   
                 }
 
                 options.url = `${baseUrl}/user`
