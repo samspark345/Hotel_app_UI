@@ -93,6 +93,8 @@ const SignUp = (action$, state$) =>
                     password: password,   
                 }
 
+                console.log(options)
+
                 options.url = `${baseUrl}/user`
 
                 axios.request(
