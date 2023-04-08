@@ -35,6 +35,7 @@ const SignUpForm = () => {
     address_country: "",
     address_city: "",
     address_street_name: "",
+    address_street_number: "",
     address_unit_number: "",
     ssn_sin: "",
     password: "",
@@ -145,6 +146,14 @@ const SignUpForm = () => {
         name="address_street_name"
         label="Street Name"
         value={formState.address_street_name}
+        onChange={handleChange}
+      />
+
+      <TextField
+        required
+        name="address_street_number"
+        label="Street Number"
+        value={formState.address_street_number}
         onChange={handleChange}
       />
       <TextField

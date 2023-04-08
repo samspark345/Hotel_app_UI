@@ -73,6 +73,7 @@ const SignUp = (action$, state$) =>
                 const address_country = action.payload.address_country
                 const address_city = action.payload.address_city
                 const address_street_name = action.payload.address_street_name
+                const address_street_number = action.payload.address_street_number
                 const address_unit_number = action.payload.address_unit_number
                 const ssn_sin = action.payload.ssn_sin
                 const password = action.payload.password
@@ -86,6 +87,7 @@ const SignUp = (action$, state$) =>
                     address_country: address_country,
                     address_city: address_city,
                     address_street_name: address_street_name,
+                    address_street_number: address_street_number,
                     address_unit_number: address_unit_number,
                     ssn_sin: ssn_sin,
                     password: password,
