@@ -88,9 +88,7 @@ const SignUp = (action$, state$) =>
                     address_street_name: address_street_name,
                     address_unit_number: address_unit_number,
                     ssn_sin: ssn_sin,
-                    registration_date: registration_date,
                     password: password,
-                    confirmPassword: confirmPassword,
                     area_code: area_code,   
                 }
 
@@ -103,7 +101,7 @@ const SignUp = (action$, state$) =>
         })
     )
 
-export const hotelEpics = combineEpics(
+export const AuthenticateEpic = combineEpics(
     AuthenticateCustomer,
     AuthenticateEmployee,
     SignUp
