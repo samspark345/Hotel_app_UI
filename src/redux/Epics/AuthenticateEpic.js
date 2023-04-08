@@ -15,14 +15,12 @@ import { GET_CITY_FILTER, GET_HOTEL_NAMES, GET_ROOM_CAPACITY, GET_ROOM_COUNT_FIL
 // }
 
 const options = {
-    method: 'GET',
-    url: 'https://free-football-soccer-videos.p.rapidapi.com/',
-    headers: {
-      'X-RapidAPI-Key': 'cf6b34c19dmsh3dbdfa1aa1df656p1f0957jsnae47a75e33ea',
-      'X-RapidAPI-Host': 'free-football-soccer-videos.p.rapidapi.com'
-    }
+    method: 'POST',
+    url: 'http://localhost:3001',
+    data: {}
 };
-  
+
+const baseUrl = 'http://localhost:3001/insert'
 
 const AuthenticateCustomer = (action$, state$) =>
     action$.pipe(
@@ -67,6 +65,36 @@ const SignUp = (action$, state$) =>
         ofType(SIGN_UP),
         mergeMap((action) => {
             return new Observable((observer) => {
+
+                const first_name = action.payload.first_name
+                const last_name = action.payload.last_name
+                const phone_number = action.payload.phone_number
+                const email = action.payload.email
+                const address_country = action.payload.address_country
+                const address_city = action.payload.address_city
+                const address_street_name = action.payload.address_street_name
+                const address_unit_number = action.payload.address_unit_number
+                const ssn_sin = action.payload.ssn_sin
+                const password = action.payload.password
+                const area_code = action.payload.area_code
+
+                options.data = {
+                    first_name: first_name,
+                    last_name: last_name,
+                    phone_number: phone_number,
+                    email: email,
+                    address_country: address_country,
+                    address_city: address_city,
+                    address_street_name: address_street_name,
+                    address_unit_number: address_unit_number,
+                    ssn_sin: ssn_sin,
+                    registration_date: registration_date,
+                    password: password,
+                    confirmPassword: confirmPassword,
+                    area_code: area_code,   
+                }
+
+                options.url = `${baseUrl}/user`
 
                 axios.request(
                     options

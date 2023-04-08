@@ -40,7 +40,7 @@ export class Hotels extends Component {
   handleFilterChange(changedData){
     this.props.actions.modifySelectedHotelFilters(changedData)
   }
-
+  
   handleFilterSubmit(){
     console.log(this.props)
     this.props.actions.applyFilters()

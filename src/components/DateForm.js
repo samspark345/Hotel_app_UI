@@ -22,13 +22,14 @@ export default function DateValidationMaxDate({
         <DemoItem>
           <DatePicker
             defaultValue={null}
+            required
             minDate={today}
             views={['year', 'month', 'day']}
             label={label}
             onChange={(new_value) => {
                 console.log(new_value)
                 const month = new_value.$M + 1 < 10 ? `0${new_value.$M + 1}` : new_value.$M + 1
-                const day = new_value.$D < 10 ? `0${new_value.$M}` : new_value.$D
+                const day = new_value.$D < 10 ? `0${new_value.$D}` : new_value.$D
                 const convertedValue = `${new_value.$y}\-${month}\-${day}`
                 handleDateChange(
                     {filterName: label,

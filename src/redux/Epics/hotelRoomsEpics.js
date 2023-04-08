@@ -85,17 +85,17 @@ const applyRoomFilters = (action$, state$) =>
 
 
                 const Amenities = selectedFilters.Amenities
-                const roomService = Amenities.indexOf('room service') > -1? true : false
-                const extendable = Amenities.indexOf('extendable') > -1? true : false
-                const tv = Amenities.indexOf('tv') > -1? true : false
-                const ac = Amenities.indexOf('a/c') > -1? true : false
-                const fridge = Amenities.indexOf('fridge') > -1? true : false
-                const wifi = Amenities.indexOf('wifi') > -1? true : false
+                const roomService = Amenities.indexOf('room service') > -1? true : ''
+                const extendable = Amenities.indexOf('extendable') > -1? true : ''
+                const tv = Amenities.indexOf('tv') > -1? true : ''
+                const ac = Amenities.indexOf('a/c') > -1? true : ''
+                const fridge = Amenities.indexOf('fridge') > -1? true : ''
+                const wifi = Amenities.indexOf('wifi') > -1? true : ''
 
 
 
                 //Make filter query to api
-                query = `available_rooms?hotel_id=${hotel_id}&room_capacity=${Room_Capacity}&views=${Views}&start=${Start_date}&end_date=${End_Date}&min_price=${Min_price}&max_price=${Max_price}&amenities[room_service]=${roomService}&amenities[extendable]=${extendable}&amenities[tv]=${tv}&amenities[ac]=${ac}&amenities[fridge]=${fridge}&amenities[wifi]=${wifi}`
+                query = `available_rooms?hotel_id=${hotel_id}&room_capacity=${Room_Capacity}&views=${Views}&start_date=${Start_date}&end_date=${End_Date}&min_price=${Min_price}&max_price=${Max_price}&amenities[room_service]=${roomService}&amenities[extendable]=${extendable}&amenities[tv]=${tv}&amenities[ac]=${ac}&amenities[fridge]=${fridge}&amenities[wifi]=${wifi}`
                 options.url = `${baseUrl}${query}`
                 console.log(options)
 

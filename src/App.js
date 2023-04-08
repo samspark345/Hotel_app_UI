@@ -13,6 +13,7 @@ import  Hotels  from './components/Hotels';
 import CustomerDashboard from './components/CustomerDashboard';
 import HotelRooms from './components/HotelRooms';
 import BookingPage from './components/BookingPage';
+import SignUpForm from './components/SignUpForm';
 
 
 const RenderLayout = ({children}) => {
@@ -74,6 +75,15 @@ function App() {
             element={
               <RenderLayout>
                 <HotelRooms />
+              </RenderLayout>
+            } 
+          />
+
+          <Route 
+            exact path='/SignUp' 
+            element={
+              <RenderLayout>
+                <SignUpForm />
               </RenderLayout>
             } 
           />

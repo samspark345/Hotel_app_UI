@@ -33,8 +33,9 @@ export function AuthenticateEmployeeOnSuccess(payload){
     }; 
 }
 
-export function SignUp(){
+export function SignUp(payload){
     return{
-        type: SIGN_UP
-    }
+        type: SIGN_UP,
+        payload
+    };
 }

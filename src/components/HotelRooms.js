@@ -29,7 +29,7 @@ export class HotelRooms extends Component {
     this.state = {
       dropdowns: {
         Room_Capacity: [1, 2, 3, 4, 5, 6],
-        Views: ['City view', 'Moutain view', 'Sea View'],
+        Views: ['City view', 'Mountain view', 'Sea View'],
         Amenities: ['room service', 'extendable', 'tv', 'a/c', 'fridge', 'wifi'],
       }
   
@@ -37,7 +37,7 @@ export class HotelRooms extends Component {
   }
 
   componentDidMount(){
-    this.props.actions.getRooms();
+    this.props.actions.applyRoomFilters();
   }
 
   componentDidUpdate(){
@@ -101,6 +101,15 @@ export class HotelRooms extends Component {
                 chain_name={this.props.selectedHotelInfo.chain_name && this.props.selectedHotelInfo.chain_name} 
                 country={this.props.selectedHotelInfo.country}
                 city={this.props.selectedHotelInfo.city}
+                price={room.price}
+                extendable={room.extendable}
+                room_service={room.room_service}
+                tv={room.tv}
+                fridge={room.fridge}
+                view={room.view}
+                air_conditioner={room.air_conditioner}
+                capacity={room.capacity}
+                wifi={room.wifi}
                 address={this.props.selectedHotelInfo.address}
                 className='hotelCard' />
               )
