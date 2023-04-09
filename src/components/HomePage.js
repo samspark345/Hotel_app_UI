@@ -22,11 +22,16 @@ const HomePage = () => {
 
           <div className='buttonArea'>
             <div className='userPrompt'>
-              <p> Which user are you?</p>
+              <p> Please select an option?</p>
             </div>
             <div className='buttons'>
-              <Button variant="contained"> Customer </Button>
-              <Button variant='contained'> User </Button>
+              <Link to='/signin' style={{textDecoration: 'none'}} >
+                <Button variant="contained"> Login </Button>
+              </Link>
+
+              <Link to='/signup' style={{textDecoration: 'none'}} >
+                <Button variant='contained'> Sign Up </Button>
+              </Link>
             </div>
             
           </div>

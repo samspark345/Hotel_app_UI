@@ -5,7 +5,7 @@ import {
     Observer
 }from 'rxjs'
 import { mergeMap } from "rxjs/operators";
-import { AUTHENTICATE_CUSTOMER, AuthenticateCustomerOnSuccess, AUTHENTICATE_EMPLOYEE, AuthenticateEmployeeOnSuccess, SIGN_UP } from "../Actions/AuthenticateActions";
+import { AUTHENTICATE_CUSTOMER, AuthenticateCustomerOnSuccess, AUTHENTICATE_EMPLOYEE, AuthenticateEmployeeOnSuccess, SIGN_UP, setAuthenticateStatus } from "../Actions/AuthenticateActions";
 import { GetHotelsOnSuccess, GET_HOTELS, GET_HOTELS_ON_SUCCESS } from "../Actions/hotelActions";
 import { GET_CHAIN_NAMES, GET_CHAIN_NAMES_ON_SUCCESS } from "../Actions/hotelChainActions";
 import { GET_CITY_FILTER, GET_HOTEL_NAMES, GET_ROOM_CAPACITY, GET_ROOM_COUNT_FILTER, POPULATE_ALL_FILTERS } from "../Actions/hotelFilterOptionsActions";
@@ -20,22 +20,38 @@ const options = {
     data: {}
 };
 
-const baseUrl = 'http://localhost:3001/insert'
 
 const AuthenticateCustomer = (action$, state$) =>
     action$.pipe(
         ofType(AUTHENTICATE_CUSTOMER),
         mergeMap((action) => {
             return new Observable((observer) => {
+                console.log(action)
+                const baseUrl = 'http://localhost:3001/queries/customer/login'
+                options.data = {
+                    email: action.payload.email,
+                    password: action.payload.password,
+                }
+                
+                options.url = baseUrl
+                options.method = 'GET'
 
                 axios.request(
                     options
                 ).then((response) => {
                     console.log(response.data)
-                    observer.next(AuthenticateCustomerOnSuccess(response.data));
+                    const userInfo = {
+                        email: action.payload.email,
+                        password: action.payload.password,
+                        customerId: response.data
+                    }
+                    observer.next(AuthenticateCustomerOnSuccess(userInfo));
+                    observer.next(setAuthenticateStatus(true))
                     observer.complete()
                     console.log(state$.value)
                     // observer.next(IncreaseVideosToGet(response.data.));
+                }).catch(()=> {
+                    observer.next(setAuthenticateStatus(false))
                 })
             })
         })
@@ -65,6 +81,8 @@ const SignUp = (action$, state$) =>
         ofType(SIGN_UP),
         mergeMap((action) => {
             return new Observable((observer) => {
+
+                const baseUrl = 'http://localhost:3001/insert'
 
                 const first_name = action.payload.first_name
                 const last_name = action.payload.last_name
@@ -99,7 +117,9 @@ const SignUp = (action$, state$) =>
 
                 axios.request(
                     options
-                )
+                ).catch(() => {
+
+                })
             })
         })
     )

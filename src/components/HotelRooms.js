@@ -37,7 +37,6 @@ export class HotelRooms extends Component {
   }
 
   componentDidMount(){
-    this.props.actions.applyRoomFilters();
   }
 
   componentDidUpdate(){
@@ -52,7 +51,10 @@ export class HotelRooms extends Component {
     this.props.actions.modifySelectedRoomFilters(selectedFilter)
   }
 
-  handleFilterSubmit(){
+  handleFilterSubmit(event){
+    event.preventDefault()
+    this.props.hotelRoomState.selectedFilters.Start_date && this.props.hotelRoomState.selectedFilters.End_date &&
+    this.props.hotelRoomState.selectedFilters.Start_date < this.props.hotelRoomState.selectedFilters.End_date &&
     this.props.actions.applyRoomFilters()
   }
 
@@ -64,11 +66,15 @@ export class HotelRooms extends Component {
     let value = null
     console.log(this.props.hotelRoomState)
     console.log(this.props.hotelState.selectedHotelInfo)
+    const error = this.props.hotelRoomState.selectedFilters.Start_date > this.props.hotelRoomState.selectedFilters.End_date
+    || this.props.hotelRoomState.selectedFilters.Start_date.length < 1 || this.props.hotelRoomState.selectedFilters.End_date.length < 1
     return (
       <>
         {
+
+          
         <div className='highlightsPageContainer'>
-          <div className='filterArea'>
+          <form className='filterArea' onSubmit={this.handleFilterSubmit}>
             <div className='DropdownFilterArea'>
               {Object.keys(this.state.dropdowns).map((labels) => {
                 const optionToDisplay = this.state.dropdowns[labels].length != 0? this.state.dropdowns[labels] : ['first', 'second','third', 'fourth', 'fifth', 'sixth', 'seventh'];
@@ -82,14 +88,15 @@ export class HotelRooms extends Component {
               
             </div>
             <div style={{display:'flex', width: '100%', justifyContent: 'center'}}>
-              <DateForm label={'Start_Date'} handleDateChange={this.handleDateChange}/>  <DateForm label={'End_Date'} handleDateChange={this.handleDateChange}/>
+              <DateForm label={'Start_Date'} handleDateChange={this.handleDateChange} error={error} helperText={'You must select a valid start - end date range'}/>  
+              <DateForm label={'End_Date'} handleDateChange={this.handleDateChange} error={error} helperText={''}/>
               <PriceForm />
             </div>
             <div style={{display:'flex', width: '100%', justifyContent: 'center'}}>
-              <Button onClick={this.handleFilterSubmit}> Filter now </Button>
+              <Button type='submit'> Filter now </Button>
             </div>
             
-          </div>
+          </form>
           
           <div className='highlightVids'>
 

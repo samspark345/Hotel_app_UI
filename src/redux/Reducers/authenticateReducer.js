@@ -1,11 +1,14 @@
 import React from 'react'
-import { AUTHENTICATE_CUSTOMER_ON_SUCCESS, AUTHENTICATE_EMPLOYEE_ON_SUCCESS } from '../Actions/AuthenticateActions'
+import { AUTHENTICATE_CUSTOMER_ON_SUCCESS, AUTHENTICATE_EMPLOYEE_ON_SUCCESS, SET_AUTHENTICATE_STATUS } from '../Actions/AuthenticateActions'
 
 
 const initAuthState = {
-    CustomerId : null,
-    EmployeeId : null
+    authenticateError: false,
+    customerInfo : null,
+    employeeInfo : null
 }
+
+// {email, password, customerId}
 
 const authenticateReducer = (state=initAuthState, action) => {
     switch(action.type){
@@ -13,18 +16,24 @@ const authenticateReducer = (state=initAuthState, action) => {
         case(AUTHENTICATE_CUSTOMER_ON_SUCCESS) : {
 
             return({
-                CustomerId: action.payload,
-                EmployeeId: null
+                customerInfo: action.payload,
+                employeeInfo: null
             })
         }
         case(AUTHENTICATE_EMPLOYEE_ON_SUCCESS) : {
 
             return({
-                CustomerId: null,
-                EmployeeId: action.payload
+                customerInfo: null,
+                employeeInfo: action.payload
             })
         }
-        
+        case(SET_AUTHENTICATE_STATUS) : {
+
+            return({
+                ...state,
+                authenticateError: action.payload
+            })
+        }
         default:
             return state
     }

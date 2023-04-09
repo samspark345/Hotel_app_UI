@@ -10,6 +10,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import { SignUp } from "../redux/Actions/AuthenticateActions";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -175,9 +176,14 @@ const SignUpForm = () => {
         onChange={handleChange}
       />
       
-      <Button variant="contained" color="primary" type="submit">
-        Submit
-      </Button>
+      <div className="buttons" style={{display: 'flex', flexDirection: 'column', alignItems:'center', justifyContent: 'center', paddingTop: '30px'}}>
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
+        <Link to='/signin'  style={{textDecoration: 'none'}} >
+          <Button variant='contained' color="primary" style={{width: '100%'}}> Sign In </Button>
+        </Link>
+      </div>
     </form>
   );
 };
