@@ -7,7 +7,7 @@ import {
 import { mergeMap } from "rxjs/operators";
 import { GetHotelsOnSuccess, GET_HOTELS, GET_HOTELS_ON_SUCCESS } from "../Actions/hotelActions";
 import { GET_CHAIN_NAMES, GET_CHAIN_NAMES_ON_SUCCESS } from "../Actions/hotelChainActions";
-import { applyRoomFiltersOnSuccess, APPLY_ROOM_FILTERS, GetRoomsOnSuccess, GET_ROOMS, BOOK_ROOM, bookRoomOnSuccess, selectHotel, GetRooms } from "../Actions/hotelRoomActions";
+import { applyRoomFiltersOnSuccess, APPLY_ROOM_FILTERS, GetRoomsOnSuccess, GET_ROOMS, BOOK_ROOM, bookRoomOnSuccess, selectHotel, GetRooms, applyRoomFilters } from "../Actions/hotelRoomActions";
 
 // function getYtVideosApiRequest(){
 //     request  
@@ -44,6 +44,10 @@ const getRooms = (action$, state$) =>
         ofType(GET_ROOMS),
         mergeMap((action) => {
             return new Observable((observer) => {
+                const options = {
+                    method: 'GET',
+                    url: 'http://localhost:3001/queries/rooms',
+                };                
                 console.log('dispatched')
                 const selectedHotelInfo = state$.value.hotelRoomState.selectedHotelInfo
                 const urlToAdd = `hotel/${selectedHotelInfo.hotel_id}/rooms`
@@ -63,12 +67,17 @@ const getRooms = (action$, state$) =>
 
 
 
-const applyRoomFilters = (action$, state$) =>
+const ApplyRoomFilters = (action$, state$) =>
     action$.pipe(
         ofType(APPLY_ROOM_FILTERS),
         mergeMap((action) => {
             return new Observable((observer) => {
                 //localhost:3001/queries/hotels?star_rating=&city=&country=&num_rooms=
+                const options = {
+                    method: 'GET',
+                    url: 'http://localhost:3001/queries/rooms',
+                };
+                  
                 console.log('here')
                 let query=''
                 const selectedFilters = state$.value.hotelRoomState.selectedFilters
@@ -116,6 +125,11 @@ const BookHotelsCustomer = (action$, state$) =>
         ofType(BOOK_ROOM),
         mergeMap((action) => {
             return new Observable((observer) => {
+                const options = {
+                    method: 'GET',
+                    url: 'http://localhost:3001/queries/rooms',
+                };
+                  
                 console.log(action)
                 console.log(state$.value)
                 const baseUrl = 'http://localhost:3001/insert/book'
@@ -137,7 +151,7 @@ const BookHotelsCustomer = (action$, state$) =>
                     options
                 ).then((response) => {
                     console.log(response.data)
-                    observer.next(GetRooms);
+                    observer.next(applyRoomFilters());
                     observer.complete()
                     console.log(state$.value)
                     // observer.next(IncreaseVideosToGet(response.data.));
@@ -163,6 +177,6 @@ const getHotelsDummy = (action$, state$) =>
 
 export const hotelRoomEpics = combineEpics(
     getRooms,
-    applyRoomFilters,
+    ApplyRoomFilters,
     BookHotelsCustomer
 )
