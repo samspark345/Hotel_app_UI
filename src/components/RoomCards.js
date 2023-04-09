@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import './hotelCard.css'
 import { PopUpDialog } from './PopUpDialog';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { bookRoom } from '../redux/Actions/hotelRoomActions';
 
 export default function RoomCards({
     room_no,
@@ -27,6 +29,7 @@ export default function RoomCards({
 }) {
 
     const [openDialogue, setOpenDialogue] = useState(false)
+    const dispatch = useDispatch()
   return (
     <div className='hotelCard'>
         <Card sx={{ maxWidth: 400, minWidth: 300 }}>
@@ -98,7 +101,13 @@ export default function RoomCards({
                 content={'Do you wanna book this room?'}
                 open={openDialogue}
                 handleClose={()=> {setOpenDialogue(false)}}
-                handleConfirm={()=> {setOpenDialogue(false)}}
+                handleConfirm={()=> {
+                    dispatch(bookRoom({
+                        room_no,
+                        
+                    }))
+                    setOpenDialogue(false)
+                }}
             />
         </Card>
     </div>

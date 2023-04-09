@@ -7,7 +7,7 @@ import {
 import { mergeMap } from "rxjs/operators";
 import { GetHotelsOnSuccess, GET_HOTELS, GET_HOTELS_ON_SUCCESS } from "../Actions/hotelActions";
 import { GET_CHAIN_NAMES, GET_CHAIN_NAMES_ON_SUCCESS } from "../Actions/hotelChainActions";
-import { applyRoomFiltersOnSuccess, APPLY_ROOM_FILTERS, GetRoomsOnSuccess, GET_ROOMS } from "../Actions/hotelRoomActions";
+import { applyRoomFiltersOnSuccess, APPLY_ROOM_FILTERS, GetRoomsOnSuccess, GET_ROOMS, BOOK_ROOM, bookRoomOnSuccess, selectHotel, GetRooms } from "../Actions/hotelRoomActions";
 
 // function getYtVideosApiRequest(){
 //     request  
@@ -111,6 +111,43 @@ const applyRoomFilters = (action$, state$) =>
         })
     )
 
+const BookHotelsCustomer = (action$, state$) =>
+    action$.pipe(
+        ofType(BOOK_ROOM),
+        mergeMap((action) => {
+            return new Observable((observer) => {
+                console.log(action)
+                console.log(state$.value)
+                const baseUrl = 'http://localhost:3001/insert/book'
+                const hotelRoomState = state$.value.hotelRoomState
+                const UserState = state$.value.User
+
+                options.data = {
+                    customerID: UserState.customerInfo.customerId,
+                    start: hotelRoomState.selectedFilters.Start_date,
+                    end: hotelRoomState.selectedFilters.End_date,
+                    hotelID: hotelRoomState.selectedHotelInfo.hotel_id,
+                    roomNumber: action.payload.room_no,
+                }
+                options.method = "POST"
+                options.url = baseUrl
+
+                console.log(options)
+                axios.request(
+                    options
+                ).then((response) => {
+                    console.log(response.data)
+                    observer.next(GetRooms);
+                    observer.complete()
+                    console.log(state$.value)
+                    // observer.next(IncreaseVideosToGet(response.data.));
+                }).catch(()=> {
+                    console.log("errr")
+                    observer.complete()
+                })
+            })
+        })
+    )    
 
 
 const getHotelsDummy = (action$, state$) =>
@@ -126,5 +163,6 @@ const getHotelsDummy = (action$, state$) =>
 
 export const hotelRoomEpics = combineEpics(
     getRooms,
-    applyRoomFilters
+    applyRoomFilters,
+    BookHotelsCustomer
 )

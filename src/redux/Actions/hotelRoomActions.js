@@ -4,6 +4,8 @@ export const MODIFY_SELECTED_ROOM_FILTERS = 'MODIFY_SELECTED_ROOM_FILTERS'
 export const APPLY_ROOM_FILTERS = 'APPLY_ROOM_FILTERS'
 export const APPLY_ROOM_FILTERS_ON_SUCCESS = 'APPLY_ROOM_FILTERS_ON_SUCCESS'
 export const SELECT_HOTEL = 'SELECT_HOTEL'
+export const BOOK_ROOM = 'BOOK_ROOM'
+export const BOOK_ROOM_SUCCESS = 'BOOK_ROOM_SUCCESS'
 
 
 
@@ -52,6 +54,20 @@ export function applyRoomFiltersOnSuccess(payload){
 export function selectHotel(payload){
     return {
         type: SELECT_HOTEL,
+        payload
+    }; 
+}
+
+export function bookRoom(payload){
+    return {
+        type: BOOK_ROOM,
+        payload
+    }; 
+}
+
+export function bookRoomOnSuccess(payload){
+    return {
+        type: BOOK_ROOM_SUCCESS,
         payload
     }; 
 }
