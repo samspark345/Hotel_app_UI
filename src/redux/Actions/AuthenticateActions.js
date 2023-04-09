@@ -43,7 +43,7 @@ export function SignUp(payload){
     };
 }
 
-export function setAuthenticateStatus(payload){
+export function setAuthenticateErrorStatus(payload){
     return{
         type: SET_AUTHENTICATE_STATUS,
         payload: payload

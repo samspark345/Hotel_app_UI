@@ -5,7 +5,7 @@ import {
     Observer
 }from 'rxjs'
 import { mergeMap } from "rxjs/operators";
-import { AUTHENTICATE_CUSTOMER, AuthenticateCustomerOnSuccess, AUTHENTICATE_EMPLOYEE, AuthenticateEmployeeOnSuccess, SIGN_UP, setAuthenticateStatus } from "../Actions/AuthenticateActions";
+import { AUTHENTICATE_CUSTOMER, AuthenticateCustomerOnSuccess, AUTHENTICATE_EMPLOYEE, AuthenticateEmployeeOnSuccess, SIGN_UP, setAuthenticateErrorStatus } from "../Actions/AuthenticateActions";
 import { GetHotelsOnSuccess, GET_HOTELS, GET_HOTELS_ON_SUCCESS } from "../Actions/hotelActions";
 import { GET_CHAIN_NAMES, GET_CHAIN_NAMES_ON_SUCCESS } from "../Actions/hotelChainActions";
 import { GET_CITY_FILTER, GET_HOTEL_NAMES, GET_ROOM_CAPACITY, GET_ROOM_COUNT_FILTER, POPULATE_ALL_FILTERS } from "../Actions/hotelFilterOptionsActions";
@@ -34,7 +34,6 @@ const AuthenticateCustomer = (action$, state$) =>
                 }
                 
                 options.url = baseUrl
-                options.method = 'GET'
 
                 axios.request(
                     options
@@ -43,15 +42,17 @@ const AuthenticateCustomer = (action$, state$) =>
                     const userInfo = {
                         email: action.payload.email,
                         password: action.payload.password,
-                        customerId: response.data
+                        customerId: response.data.rows[0].customer_id
                     }
                     observer.next(AuthenticateCustomerOnSuccess(userInfo));
-                    observer.next(setAuthenticateStatus(true))
+                    observer.next(setAuthenticateErrorStatus(false))
                     observer.complete()
                     console.log(state$.value)
                     // observer.next(IncreaseVideosToGet(response.data.));
                 }).catch(()=> {
-                    observer.next(setAuthenticateStatus(false))
+                    console.log("errr")
+                    observer.next(setAuthenticateErrorStatus(true))
+                    observer.complete()
                 })
             })
         })
