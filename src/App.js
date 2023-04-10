@@ -15,6 +15,7 @@ import HotelRooms from './components/HotelRooms';
 import BookingPage from './components/BookingPage';
 import SignUpForm from './components/SignUpForm';
 import SignInForm from './components/SignInForm';
+import CustomerProfile from './components/CustomerProfile';
 
 
 const RenderLayout = ({children}) => {
@@ -94,6 +95,15 @@ function App() {
             element={
               <RenderLayout>
                 <SignInForm />
+              </RenderLayout>
+            } 
+          />
+
+          <Route 
+            exact path='/profile' 
+            element={
+              <RenderLayout>
+                <CustomerProfile />
               </RenderLayout>
             } 
           />

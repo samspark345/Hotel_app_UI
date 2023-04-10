@@ -6,7 +6,8 @@ export const GET_CUSTOMER_BOOKING_ARCHIVES = 'GET_CUSTOMER_BOOKING_ARCHIVES'
 export const GET_CUSTOMER_BOOKING_ARCHIVES_ON_SUCCESS = 'GET_CUSTOMER_BOOKING_ARCHIVES_ON_SUCCESS'
 export const GET_CUSTOMER_RENTING_ARCHIVES = 'GET_CUSTOMER_RENTING_ARCHIVES'
 export const GET_CUSTOMER_RENTING_ARCHIVES_ON_SUCCESS = 'GET_CUSTOMER_RENTING_ARCHIVES_ON_SUCCESS'
-
+export const GET_CUSTOMER_PROFILE = 'GET_CUSTOMER_PROFILE'
+export const GET_CUSTOMER_PROFILE_ON_SUCCESS = 'GET_CUSTOMER_PROFILE_ON_SUCCESS'
 
 
 
@@ -60,6 +61,17 @@ export function GetCustomerRentsArchivesOnSuccess(payload){
     }; 
 }
 
+export function GetCustomerProfile(){
+    return {
+        type: GET_CUSTOMER_PROFILE
+    }; 
+}
+export function GetCustomerProfileOnSuccess(payload){
+    return {
+        type: GET_CUSTOMER_PROFILE_ON_SUCCESS,
+        payload: payload
+    };
+}
 // export function populateAllFIlters(payload){
 //     return {
 //         type: POPULATE_ALL_FILTERS,
