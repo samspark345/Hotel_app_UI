@@ -1,10 +1,6 @@
-.profileField{
+.customerProfileContainer{
     display:flex;
     justify-content: center;  
     flex-direction: column;  
     align-items: center;
-    margin: 10px;
-}
-.profileFieldLabel{
-    text-align: center;
 }

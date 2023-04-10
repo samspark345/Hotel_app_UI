@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { GetCustomerProfile } from '../redux/Actions/CustomerInfoActions';
 import { populateAllFIlters } from '../redux/Actions/hotelFilterOptionsActions';
 import './CustomerProfile.css';
+import { TextField } from '@material-ui/core';
 
 export class CustomerProfile extends Component {
     constructor(props){
@@ -49,18 +50,12 @@ export class CustomerProfile extends Component {
                     var inputForm;
                     if(this.state.customerProfile[field][1]){
                       console.log("created editable")
-                        inputForm = <input type='text' className='profileFieldInput' defaultValue={this.state.customerProfile[field][0]} />
+                        return <TextField className='profileField' name={field} label={field.replace("_", " ")}  value={this.state.customerProfile[field][0]} />
                     }
                     else{
                       console.log("created read only")
-                        inputForm =<input type='text' className='profileFieldInput' readOnly={true} value={this.state.customerProfile[field][0]} />
+                        return <TextField className='profileField' name={field} label={field.replace("_", " ")} disabled='true' value={this.state.customerProfile[field][0]} />
                     }
-                    return(
-                      <div className='profileField'>
-                        <label className='profileFieldLabel'>{field.replace('_',' ')}</label>
-                        {inputForm}
-                      </div>
-                    )  
                 })}
               </div>
             }
