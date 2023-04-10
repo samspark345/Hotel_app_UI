@@ -19,7 +19,7 @@ export class CustomerProfile extends Component {
             First_Name: ['', true],
             Last_Name: ['', true],
             Email: ['', true],
-            Phone: ['', true],
+            Phone: ['testing', true],
             Street_Name: ['', true],
             Street_Number: ['', true],
             Unit_Number: ['', true],
@@ -29,9 +29,16 @@ export class CustomerProfile extends Component {
             SSN: ['', false],
             Registration_Date: ['', false]
           }
-      
         }
       }
+    handleChange(event){
+      this.setState({
+        customerProfile:{
+          ...this.state.customerProfile,
+          [event.target.name]: [event.target.value, true]
+        }
+      })
+    }
     handleSubmit(event){
       // Send update request to the db
     }
@@ -49,12 +56,10 @@ export class CustomerProfile extends Component {
                 {Object.keys(this.state.customerProfile).map((field) => {
                     var inputForm;
                     if(this.state.customerProfile[field][1]){
-                      console.log("created editable")
-                        return <TextField className='profileField' name={field} label={field.replace("_", " ")}  value={this.state.customerProfile[field][0]} />
+                        return <TextField name={field} label={field.replace("_", " ")}  value={this.state.customerProfile[field][0]} onChange={(event)=>this.handleChange(event)} />
                     }
                     else{
-                      console.log("created read only")
-                        return <TextField className='profileField' name={field} label={field.replace("_", " ")} disabled='true' value={this.state.customerProfile[field][0]} />
+                        return <TextField name={field} label={field.replace("_", " ")} disabled='true' value={this.state.customerProfile[field][0]} />
                     }
                 })}
               </div>
