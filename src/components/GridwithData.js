@@ -96,7 +96,7 @@ class GridwithData extends Component {
                     columnDefs={this.state.columnDefs}
                     enableColResize={true}
                     onGridReady={this.onGridReady}
-                    rowData={this.state.rowData}
+                    rowData={this.props.rowData}
                     rowSelection="multiple"
                     rowMultiSelectWithClick= "true"
                     onSelectionChanged={this.onSelectionChanged}

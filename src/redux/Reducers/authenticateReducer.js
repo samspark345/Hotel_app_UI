@@ -8,7 +8,8 @@ const initAuthState = {
     employeeInfo : null
 }
 
-// {email, password, customerId}
+// customerInfo: {email, password, customerId}
+// employeeInfo : {}
 
 const authenticateReducer = (state=initAuthState, action) => {
     switch(action.type){
@@ -16,6 +17,7 @@ const authenticateReducer = (state=initAuthState, action) => {
         case(AUTHENTICATE_CUSTOMER_ON_SUCCESS) : {
 
             return({
+                ...state,
                 customerInfo: action.payload,
                 employeeInfo: null
             })
@@ -23,6 +25,7 @@ const authenticateReducer = (state=initAuthState, action) => {
         case(AUTHENTICATE_EMPLOYEE_ON_SUCCESS) : {
 
             return({
+                ...state,
                 customerInfo: null,
                 employeeInfo: action.payload
             })
