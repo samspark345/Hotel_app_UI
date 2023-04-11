@@ -11,6 +11,7 @@ export const GET_CUSTOMER_PROFILE_ON_SUCCESS = 'GET_CUSTOMER_PROFILE_ON_SUCCESS'
 
 
 
+
 export function GetCustomerBooking(){
     return {
         type: GET_CUSTOMER_BOOKINGS
@@ -18,6 +19,13 @@ export function GetCustomerBooking(){
 }
 
 export function GetCustomerBookingOnSuccess(payload){
+    return {
+        type: GET_CUSTOMER_BOOKINGS_ON_SUCCESS,
+        payload: payload
+    }; 
+}
+
+export function deleteBookingSelectedByCustomer(payload){
     return {
         type: GET_CUSTOMER_BOOKINGS_ON_SUCCESS,
         payload: payload

@@ -10,6 +10,7 @@ import GridwithData from './GridwithData';
 import { Button } from '@mui/material';
 import { GetCustomerBooking } from '../redux/Actions/CustomerInfoActions';
 import dayjs from 'dayjs';
+import { deleteSelectedBookings } from '../redux/Actions/EmployeeBookingsPageActions';
 
 export class BookingPage extends Component {
 
@@ -48,6 +49,8 @@ export class BookingPage extends Component {
     super(props)
     
     this.sectionBookingByDates = this.sectionBookingByDates.bind(this)
+    this.deleteBookings = this.deleteBookings.bind(this)
+
   }
 
   componentDidMount(){
@@ -57,6 +60,12 @@ export class BookingPage extends Component {
       allBookings: this.props.customerBookingState.bookings
     })
   }
+
+  deleteBookings(bookingsToDelete){
+    this.props.actions.deleteBookings(bookingsToDelete)
+    this.props.actions.getCustomerBooking()
+  }
+
 
   componentDidUpdate(prevProps, prevState){
     // this.props.actions.getHotels();
@@ -110,7 +119,7 @@ export class BookingPage extends Component {
       <div className='highlightsPageContainer'>
           
           <div style={{ height: "500px", width: "100%", padding: '100px', alignSelf: 'center', justifyContent: 'center'}}>
-            <GridwithData gridLabel={'Current Bookings'} columnDefs ={this.state.bookingColumnDefs} rowData={this.state.currentBooking} showDelete/>
+            <GridwithData gridLabel={'Current Bookings'} columnDefs ={this.state.bookingColumnDefs} rowData={this.state.currentBooking} showDelete deleteRows={this.deleteBookings}/>
           </div>
           
           
@@ -134,6 +143,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     getCustomerBooking: GetCustomerBooking,
+    deleteBookings: deleteSelectedBookings
   }, 
   dispatch)
 });

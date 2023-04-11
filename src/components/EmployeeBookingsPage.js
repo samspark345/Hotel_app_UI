@@ -162,12 +162,12 @@ export class BookingPage extends Component {
       <div className='highlightsPageContainer'>
           
           <div style={{ height: "500px", width: "100%", padding: '100px', alignSelf: 'center', justifyContent: 'center'}}>
-            <GridwithData gridLabel={'Current Bookings'} columnDefs ={this.state.bookingColumnDefs} rowData={this.state.currentBooking} showDelete deleteRows={this.deleteBookings}/>
+            <GridwithData gridLabel={'All Customers Current Bookings'} columnDefs ={this.state.bookingColumnDefs} rowData={this.state.currentBooking} showDelete deleteRows={this.deleteBookings}/>
           </div>
           
           
           <div style={{ height: "500px", width: "100%", position: 'relative', padding: '200px', alignSelf: 'center', justifyContent: 'center'}}>
-            <GridwithData gridLabel={'Past Bookings'} columnDefs ={this.state.bookingColumnDefs} rowData={this.state.pastBooking}/>
+            <GridwithData gridLabel={'All Customers Past Bookings'} columnDefs ={this.state.bookingColumnDefs} rowData={this.state.pastBooking}/>
           </div>
       </div>
     )
