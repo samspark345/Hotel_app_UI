@@ -5,6 +5,7 @@ import { render } from "react-dom";
 import { AgGridReact } from "ag-grid-react";
 import './GridwithData.css'
 import { Button } from "@mui/material";
+import { PopUpDialog } from "./PopUpDialog";
 
 class GridwithData extends Component {
   constructor(props) {
@@ -15,12 +16,14 @@ class GridwithData extends Component {
     this.onSelectionChanged = this.onSelectionChanged.bind(this);
     this.renderTopButtons = this.renderTopButtons.bind(this);
     this.gridLabel = this.props.gridLabel
+    this.deleteRows = this.props.deleteRows
 
     this.state = {
       columnDefs: this.props.columnDefs,
       rowData: this.props.rowData,
       selectedRows : [],
-      disableDelete : true
+      disableDelete : true,
+      openDialog : false
     };
   }
   onSelectionChanged() {
@@ -32,6 +35,11 @@ class GridwithData extends Component {
         disableDelete: disableDeleteValue
     })
     console.log(selectedRows)
+  }
+
+  onDeleteClicked(){
+
+
   }
 
   onGridReady(params) {
@@ -60,7 +68,10 @@ class GridwithData extends Component {
                 <div className="deleteButton" style={{padding: '5px'}}>
                     {console.log(`the button value is ${this.state.disableDelete}`)}
                     <Button variant="contained" 
-                    onClick={()=>{console.log('delete')}}
+                    onClick={()=>{this.setState({
+                      ...this.state,
+                      openDialog: true
+                    })}}
                     disabled={ this.state.disableDelete}
                     >
                         Delete</Button>
@@ -104,6 +115,24 @@ class GridwithData extends Component {
                 </div>
 
             </div>
+            <PopUpDialog title={'Are you sure?'} 
+                content={'Do you wanna delete the selected items?'}
+                open={this.state.openDialog}
+
+                handleClose={()=> {this.setState({
+                  ...this.state,
+                  openDialog: false
+                })}}
+
+
+                handleConfirm={()=> {
+                    this.deleteRows && this.deleteRows(this.state.selectedRows)
+                    this.setState({
+                      ...this.state,
+                      openDialog: false
+                    })
+                }}
+            />
       </div>
     );
   }
