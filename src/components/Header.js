@@ -12,8 +12,9 @@ const Header = () => {
         </div>
         <div className='navbarItems'>
           <NavLink end to='/hotels'> Hotels </NavLink>
-          <NavLink end to='/Booking'> MyBookings </NavLink>
-          <NavLink end to='/Dashboard'> MyAccount </NavLink>
+          <NavLink end to='/Booking'> My Bookings </NavLink>
+          <NavLink end to='/customerBookings'> Customer Bookings </NavLink>
+          <NavLink end to='/profile'> My Account </NavLink>
         </div>
       </div>
   )

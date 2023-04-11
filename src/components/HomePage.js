@@ -1,11 +1,15 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import './homepage.css'
 import FlatButton from 'material-ui/FlatButton'
 import { RadioButton } from 'material-ui'
 import { Button } from '@mui/material'
+import { useSelector } from 'react-redux'
 
 const HomePage = () => {
+  const selector = useSelector((state) => state)
+  const navigate = useNavigate()
+
   return (
     <section className='homepage'>
 

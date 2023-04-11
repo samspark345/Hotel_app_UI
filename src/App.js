@@ -6,7 +6,8 @@ import {
   Routes,
   Route,
   Navigate,
-  Link
+  Link,
+  useNavigate
 } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import  Hotels  from './components/Hotels';
@@ -16,6 +17,8 @@ import BookingPage from './components/BookingPage';
 import SignUpForm from './components/SignUpForm';
 import SignInForm from './components/SignInForm';
 import CustomerProfile from './components/CustomerProfile';
+import { useEffect } from 'react';
+import EmployeeBookingsPage from './components/EmployeeBookingsPage';
 
 
 const RenderLayout = ({children}) => {
@@ -30,7 +33,8 @@ const RenderLayout = ({children}) => {
 
 
 function App() {
-  const selector = useSelector((state) => state)
+  const selector = useSelector((state) => state);
+  
   console.log(selector)
   // console.log(useSelector())
   return (
@@ -45,33 +49,29 @@ function App() {
             } 
           />
 
-          <Route 
-            exact path='/hotels' 
-            element={
-              <RenderLayout>
-                <Hotels />
-              </RenderLayout>
-            } 
-          />
+          {(selector.User.customerInfo !== null || selector.User.employeeInfo !== null) &&
+            <Route 
+              exact path='/hotels' 
+              element={
+                <RenderLayout>
+                  <Hotels />
+                </RenderLayout>
+              } 
+            />
+          }
 
-          <Route 
-            exact path='/Dashboard' 
-            element={
-              <RenderLayout>
-                <CustomerDashboard />
-              </RenderLayout>
-            } 
-          />
 
-          <Route 
+          {(selector.User.customerInfo !== null ||selector.User.employeeInfo !== null) &&
+            <Route 
             exact path='/Booking' 
             element={
               <RenderLayout>
                 <BookingPage />
               </RenderLayout>
             } 
-          />
+          />}
 
+          {(selector.User.customerInfo !== null || selector.User.employeeInfo !== null) &&
           <Route 
             exact path='/Rooms' 
             element={
@@ -79,7 +79,7 @@ function App() {
                 <HotelRooms />
               </RenderLayout>
             } 
-          />
+          />}
 
           <Route 
             exact path='/SignUp' 
@@ -99,13 +99,26 @@ function App() {
             } 
           />
 
+          {(selector.User.customerInfo !== null || selector.User.employeeInfo !== null) &&
+
+            <Route 
+              exact path='/profile' 
+              element={
+                <RenderLayout>
+                  <CustomerProfile />
+                </RenderLayout>
+              } 
+            />
+          }
+
+
           <Route 
-            exact path='/profile' 
-            element={
-              <RenderLayout>
-                <CustomerProfile />
-              </RenderLayout>
-            } 
+              exact path='/customerBookings' 
+              element={
+                <RenderLayout>
+                  <EmployeeBookingsPage />
+                </RenderLayout>
+              } 
           />
 
           <Route 

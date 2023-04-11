@@ -4,7 +4,8 @@ import { hotelChainEpic } from '../Epics/hotelChainEpics';
 import { hotelEpics } from '../Epics/hotelEpics';
 import { hotelRoomEpics } from '../Epics/hotelRoomsEpics';
 import { AuthenticateEpic } from '../Epics/AuthenticateEpic';
-import { customerBookingEpics } from '../Epics/customerBookingEpic';
+import { employeeCustomerBookingsEpic } from '../Epics/employeeCustomerBookingsEpic';
+import { customerBookingsEpics } from '../Epics/customerBookingsEpic';
 
 
 export const rootEpic = combineEpics(
@@ -12,5 +13,6 @@ export const rootEpic = combineEpics(
   hotelEpics,
   hotelRoomEpics,
   AuthenticateEpic,
-  customerBookingEpics,
+  customerBookingsEpics,
+  employeeCustomerBookingsEpic
 );

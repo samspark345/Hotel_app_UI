@@ -112,6 +112,6 @@ const getCustomerBooking = (action$, state$) =>
         })
     )    
 
-export const customerBookingEpics = combineEpics(
+export const customerBookingsEpics = combineEpics(
     getCustomerBooking
 )
