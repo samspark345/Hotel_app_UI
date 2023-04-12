@@ -9,7 +9,7 @@ const initAuthState = {
 }
 
 // customerInfo: {email, password, customerId}
-// employeeInfo : {}
+// employeeInfo : {email, password, employeeId, managerId}
 
 const authenticateReducer = (state=initAuthState, action) => {
     switch(action.type){

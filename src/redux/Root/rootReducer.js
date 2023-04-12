@@ -7,6 +7,7 @@ import hotelRoomsReducer from '../Reducers/hotelRoomsReducer'
 import customerBookingReducer from '../Reducers/customerBookingReducer'
 import employeeCustomerBookingsReducer from '../Reducers/employeeCustomerBookingsReducer'
 import customerProfileReducer from '../Reducers/customerProfileReducer'
+import viewsReducer from '../Reducers/viewsReducer'
 
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     hotelRoomState: hotelRoomsReducer,
     customerBookingState: customerBookingReducer,
     employeeBookingsPageState: employeeCustomerBookingsReducer,
-    customerProfileState: customerProfileReducer
+    customerProfileState: customerProfileReducer,
+    viewsState: viewsReducer
 })
 export default rootReducer

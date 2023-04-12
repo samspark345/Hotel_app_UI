@@ -15,6 +15,8 @@ const Header = () => {
           <NavLink end to='/Booking'> My Bookings </NavLink>
           <NavLink end to='/customerBookings'> Customer Bookings </NavLink>
           <NavLink end to='/profile'> My Account </NavLink>
+          <NavLink end to='/views'> Views </NavLink>
+
         </div>
       </div>
   )

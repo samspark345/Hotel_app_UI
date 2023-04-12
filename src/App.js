@@ -19,6 +19,7 @@ import SignInForm from './components/SignInForm';
 import CustomerProfile from './components/CustomerProfile';
 import { useEffect } from 'react';
 import EmployeeBookingsPage from './components/EmployeeBookingsPage';
+import Views from './components/Views';
 
 
 const RenderLayout = ({children}) => {
@@ -117,6 +118,15 @@ function App() {
               element={
                 <RenderLayout>
                   <EmployeeBookingsPage />
+                </RenderLayout>
+              } 
+          />
+
+          <Route 
+              exact path='/views' 
+              element={
+                <RenderLayout>
+                  <Views />
                 </RenderLayout>
               } 
           />
