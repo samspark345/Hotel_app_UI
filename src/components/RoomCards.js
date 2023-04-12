@@ -97,7 +97,6 @@ export default function RoomCards({
             </CardContent>
             <CardActions>
                 <Button size="small" onClick={()=>{setOpenDialogue(true)}}>{userState.customerInfo? 'Book': 'Rent'}</Button>
-                <Button size="small">Learn More</Button>
             </CardActions>
 
             <PopUpDialog title={userState.customerInfo? 'Are you sure?' : 'please type customer Id'} 
