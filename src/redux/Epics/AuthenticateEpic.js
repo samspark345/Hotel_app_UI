@@ -63,15 +63,34 @@ const AuthenticateEmployee = (action$, state$) =>
         ofType(AUTHENTICATE_EMPLOYEE),
         mergeMap((action) => {
             return new Observable((observer) => {
+                console.log(action)
+                const baseUrl = 'http://localhost:3001/queries/employee/login'
+                options.data = {
+                    email: action.payload.email,
+                    password: action.payload.password,
+                }
+                
+                options.url = baseUrl
 
                 axios.request(
                     options
                 ).then((response) => {
                     console.log(response.data)
-                    observer.next(AuthenticateEmployeeOnSuccess(response.data));
+                    const userInfo = {
+                        email: action.payload.email,
+                        password: action.payload.password,
+                        managerId: response.data.rows[0].managerid,
+                        employeeId: response.data.rows[0].employeeid
+                    }
+                    observer.next(AuthenticateEmployeeOnSuccess(response.data.rows[0]));
+                    observer.next(setAuthenticateErrorStatus(false))
                     observer.complete()
                     console.log(state$.value)
                     // observer.next(IncreaseVideosToGet(response.data.));
+                }).catch(()=> {
+                    console.log("errr")
+                    observer.next(setAuthenticateErrorStatus(true))
+                    observer.complete()
                 })
             })
         })

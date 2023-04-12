@@ -10,7 +10,7 @@ import { GetHotelsOnSuccess, GET_HOTELS, GET_HOTELS_ON_SUCCESS } from "../Action
 import { GET_CHAIN_NAMES, GET_CHAIN_NAMES_ON_SUCCESS } from "../Actions/hotelChainActions";
 import { GET_CITY_FILTER, GET_HOTEL_NAMES, GET_ROOM_CAPACITY, GET_ROOM_COUNT_FILTER, POPULATE_ALL_FILTERS } from "../Actions/hotelFilterOptionsActions";
 import { GET_CUSTOMER_BOOKINGS, GetCustomerBookingOnSuccess } from "../Actions/CustomerInfoActions";
-import { DELETE_SELECTED_BOOKINGS, GET_ALL_CUSTOMER_BOOKINGS, GET_CURRENT_CUSTOMER_BOOKINGS, GET_PAST_CUSTOMER_BOOKINGS, GetAllCurrentCustomerBookings, GetAllCustomerBookingOnSuccess, GetCurrentCustomerBookingOnSuccess, GetPastCustomerBookingOnSuccess } from "../Actions/EmployeeBookingsPageActions";
+import { CREATE_CUSTOMER_RENTING, DELETE_SELECTED_BOOKINGS, GET_ALL_CUSTOMER_BOOKINGS, GET_CURRENT_CUSTOMER_BOOKINGS, GET_CURRENT_CUSTOMER_RENTINGS, GET_PAST_CUSTOMER_BOOKINGS, GET_PAST_CUSTOMER_RENTINGS, GetAllCurrentCustomerBookings, GetAllCustomerBookingOnSuccess, GetCurrentCustomerBookingOnSuccess, GetCurrentCustomerRentingOnSuccess, GetPastCustomerBookingOnSuccess, GetPastCustomerRentingOnSuccess } from "../Actions/EmployeeBookingsPageActions";
 import dayjs from "dayjs";
 
 // function getYtVideosApiRequest(){
@@ -158,6 +158,83 @@ const getPastCustomersBooking = (action$, state$) =>
             })
         })
     )
+
+const getCurrentCustomersRenting = (action$, state$) =>
+    action$.pipe(
+        ofType(GET_CURRENT_CUSTOMER_RENTINGS),
+        mergeMap((action) => {
+            return new Observable((observer) => {
+                const options = {
+                    method: 'GET',
+                    url: 'http://localhost:3001/queries/',
+                    params: {
+
+                    }
+                };
+                const today = convertDates(dayjs())
+                  
+                console.log(action)
+                console.log(state$.value)
+                const baseUrl = 'http://localhost:3001/queries/renting/ongoing'
+                options.url = baseUrl
+                options.url = `${baseUrl}?date=${today}`
+
+
+                console.log(options)
+                axios.request(
+                    options
+                ).then((response) => {
+                    console.log(response.data)
+                    observer.next(GetCurrentCustomerRentingOnSuccess(response.data.rows));
+                    observer.complete()
+                    console.log(state$.value)
+                    // observer.next(IncreaseVideosToGet(response.data.));
+                }).catch(()=> {
+                    console.log("errr")
+                    observer.complete()
+                })
+            })
+        })
+    )
+
+
+const getPastCustomersRenting = (action$, state$) =>
+    action$.pipe(
+        ofType(GET_PAST_CUSTOMER_RENTINGS),
+        mergeMap((action) => {
+            return new Observable((observer) => {
+                const options = {
+                    method: 'GET',
+                    url: 'http://localhost:3001/queries/',
+                    params: {
+
+                    }
+                };
+                const today = convertDates(dayjs())
+                  
+                console.log(action)
+                console.log(state$.value)
+                const baseUrl = 'http://localhost:3001/queries/renting/past'
+                options.url = baseUrl
+                options.url = `${baseUrl}?date=${today}`
+
+
+                console.log(options)
+                axios.request(
+                    options
+                ).then((response) => {
+                    console.log(response.data)
+                    observer.next(GetPastCustomerRentingOnSuccess(response.data.rows));
+                    observer.complete()
+                    console.log(state$.value)
+                    // observer.next(IncreaseVideosToGet(response.data.));
+                }).catch(()=> {
+                    console.log("errr")
+                    observer.complete()
+                })
+            })
+        })
+    )
     
 const deleteSelectedBookings = (action$, state$) =>
     action$.pipe(
@@ -200,9 +277,54 @@ const deleteSelectedBookings = (action$, state$) =>
         })
     )
 
+
+const createRenting = (action$, state$) =>
+    action$.pipe(
+        ofType(CREATE_CUSTOMER_RENTING),
+        mergeMap((action) => {
+            return new Observable((observer) => {
+                const options = {
+                    method: 'POST',
+                    url: 'http://localhost:3001/update/',
+                };
+
+
+                  
+                console.log(action)
+                console.log(state$.value)
+                const baseUrl = 'http://localhost:3001/update/booking/check_in/'
+                action.payload.forEach((booking)=> {
+                    options.url = `${baseUrl}${booking.booking_id}`
+                    console.log(options)
+                    axios.request(
+                        options
+                    )
+                })
+                observer.complete()               
+
+                // console.log(options)
+                // axios.request(
+                //     options
+                // ).then((response) => {
+                //     console.log(response.data)
+                //     observer.next(GetPastCustomerBookingOnSuccess(response.data.rows));
+                //     observer.complete()
+                //     console.log(state$.value)
+                //     // observer.next(IncreaseVideosToGet(response.data.));
+                // }).catch(()=> {
+                //     console.log("errr")
+                //     observer.complete()
+                // })
+            })
+        })
+    )
+
 export const employeeCustomerBookingsEpic = combineEpics(
     getAllCustomersBooking,
     getCurrentCustomersBooking,
     getPastCustomersBooking,
-    deleteSelectedBookings
+    getCurrentCustomersRenting,
+    getPastCustomersRenting,
+    deleteSelectedBookings,
+    createRenting
 )

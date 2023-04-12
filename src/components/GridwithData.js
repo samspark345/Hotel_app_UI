@@ -17,13 +17,15 @@ class GridwithData extends Component {
     this.renderTopButtons = this.renderTopButtons.bind(this);
     this.gridLabel = this.props.gridLabel
     this.deleteRows = this.props.deleteRows
+    this.makeRent = this.props.makeRent
 
     this.state = {
       columnDefs: this.props.columnDefs,
       rowData: this.props.rowData,
       selectedRows : [],
       disableDelete : true,
-      openDialog : false
+      openDialog : false,
+      openRentDialog : false
     };
   }
   onSelectionChanged() {
@@ -75,6 +77,20 @@ class GridwithData extends Component {
                     disabled={ this.state.disableDelete}
                     >
                         Delete</Button>
+                </div>
+            }
+
+            {this.props.makeRent && 
+                <div className="deleteButton" style={{padding: '5px'}}>
+                    {console.log(`the button value is ${this.state.disableDelete}`)}
+                    <Button variant="contained" 
+                    onClick={()=>{this.setState({
+                      ...this.state,
+                      openRentDialog: true
+                    })}}
+                    disabled={ this.state.disableDelete}
+                    >
+                        make rent</Button>
                 </div>
             }
             <div className="sizeToFit" style={{padding: '5px'}}>
@@ -130,6 +146,26 @@ class GridwithData extends Component {
                     this.setState({
                       ...this.state,
                       openDialog: false
+                    })
+                }}
+            />
+
+
+            <PopUpDialog title={'Are you sure?'} 
+                content={'Do you wanna make the selected bookings rentings?'}
+                open={this.state.openRentDialog}
+
+                handleClose={()=> {this.setState({
+                  ...this.state,
+                  openDialog: false
+                })}}
+
+
+                handleConfirm={()=> {
+                    this.makeRent && this.makeRent(this.state.selectedRows)
+                    this.setState({
+                      ...this.state,
+                      openRentDialog: false
                     })
                 }}
             />

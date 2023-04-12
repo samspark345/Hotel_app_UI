@@ -1,5 +1,5 @@
 import React from 'react'
-import { APPLY_ROOM_FILTERS_ON_SUCCESS, GET_ROOMS_ON_SUCCESS , MODIFY_SELECTED_ROOM_FILTERS, SELECT_HOTEL} from '../Actions/hotelRoomActions'
+import { APPLY_ROOM_FILTERS_ON_SUCCESS, GET_ROOMS_ON_SUCCESS , MODIFY_SELECTED_ROOM_FILTERS, RESET_ROOM_FILTERS, SELECT_HOTEL} from '../Actions/hotelRoomActions'
 
 
 const initHotelState = {
@@ -39,6 +39,24 @@ const hotelRoomsReducer = (state=initHotelState, action) => {
             return({
                 ...state,
                 rooms: action.payload
+            })
+        }
+
+        case(RESET_ROOM_FILTERS) : {
+
+            return({
+                ...state,
+                rooms: [],
+                selectedFilters : {
+                    Room_Capacity: [],
+                    Views: [],
+                    Amenities: [],
+                    Start_date: '',
+                    End_date: '',
+                    Min_price: '',
+                    Max_price: ''
+                },
+            
             })
         }
 

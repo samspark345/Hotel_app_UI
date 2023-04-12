@@ -7,7 +7,6 @@ const initHighlightState = {
     Room_Capacity: [],
     Hotel_Name: [],
     City: [],
-    No_Of_Rooms: [],
     Star_No: [1,2,3,4,5]
 }
 

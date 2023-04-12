@@ -5,9 +5,8 @@ import { GET_ROOM_CAPACITY_ON_SUCCESS, GET_ROOM_COUNT_FILTER_ON_SUCCESS } from '
 
 const initHotelFilterState = {
     dropdowns: {
-    chain_name: ['Lumina', 'HavenStay', 'WanderLust', 'Oasis', 'Aqua'],
+    chain_name: ['Lumina', 'HavenStay', 'Wanderlust', 'Oasis', 'Aqua'],
     city: ['Toronto','Miami', 'Montreal', 'New York','Ottawa', 'Los Angeles'],
-    No_Of_Rooms: [],
     star_rating: [1,2,3,4,5],
     country: ['Canada', 'USA']
     }

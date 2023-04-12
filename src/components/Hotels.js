@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './highlights.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { applyFilters, Gethotels, ModifySelectedFilters, ModifySelectedHotelFilters } from '../redux/Actions/hotelActions';
+import { applyFilters, Gethotels, ModifySelectedFilters, ModifySelectedHotelFilters, resetHotelFilters } from '../redux/Actions/hotelActions';
 import HotelCards from './HotelCards';
 import MultiSelectDropdown from './MultiSelectDropdown';
 import TextField from '@mui/material/TextField';
@@ -31,6 +31,11 @@ export class Hotels extends Component {
 
 
   componentDidMount(){
+    this.props.actions.resetFilters()
+  }
+
+  componentWillUnmount(){
+    // this.props.actions.resetFilters()
   }
 
   componentDidUpdate(){
@@ -100,7 +105,8 @@ const mapDispatchToProps = (dispatch) => ({
     getHotels : Gethotels,
     populateFilters : populateAllFIlters,
     modifySelectedHotelFilters : ModifySelectedHotelFilters,
-    applyFilters : applyFilters
+    applyFilters : applyFilters,
+    resetFilters : resetHotelFilters
   }, 
   dispatch)
 });

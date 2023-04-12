@@ -6,6 +6,11 @@ export const GET_PAST_CUSTOMER_BOOKINGS = 'GET_PAST_CUSTOMER_BOOKINGS'
 export const GET_PAST_CUSTOMER_BOOKINGS_ON_SUCCESS = 'GET_PAST_CUSTOMER_BOOKINGS_ON_SUCCESS'
 export const GET_CURRENT_CUSTOMER_BOOKINGS = 'GET_CURRENT_CUSTOMER_BOOKINGS'
 export const GET_CURRENT_CUSTOMER_BOOKINGS_ON_SUCCESS = 'GET_CURRENT_CUSTOMER_BOOKINGS_ON_SUCCESS'
+export const GET_CURRENT_CUSTOMER_RENTINGS = 'GET_CURRENT_CUSTOMER_RENTINGS'
+export const GET_CURRENT_CUSTOMER_RENTINGS_ON_SUCCESS = 'GET_CURRENT_CUSTOMER_RENTINGS_ON_SUCCESS'
+export const GET_PAST_CUSTOMER_RENTINGS = 'GET_PAST_CUSTOMER_RENTINGS'
+export const GET_PAST_CUSTOMER_RENTINGS_ON_SUCCESS = 'GET_PAST_CUSTOMER_RENTINGS_ON_SUCCESS'
+export const CREATE_CUSTOMER_RENTING = 'CREATE_CUSTOMER_RENTING'
 export const DELETE_SELECTED_BOOKINGS = 'DELETE_SELECTED_BOOKINGS'
 
 
@@ -47,6 +52,41 @@ export function GetCurrentCustomerBookings(payload){
 export function GetCurrentCustomerBookingOnSuccess(payload){
     return {
         type: GET_CURRENT_CUSTOMER_BOOKINGS_ON_SUCCESS,
+        payload: payload
+    }; 
+}
+
+export function GetCurrentCustomerRenting(payload){
+    return {
+        type: GET_CURRENT_CUSTOMER_RENTINGS,
+        payload: payload
+    }; 
+}
+
+export function GetCurrentCustomerRentingOnSuccess(payload){
+    return {
+        type: GET_CURRENT_CUSTOMER_RENTINGS_ON_SUCCESS,
+        payload: payload
+    }; 
+}
+
+export function GetPastCustomerRenting(payload){
+    return {
+        type: GET_PAST_CUSTOMER_RENTINGS,
+        payload: payload
+    }; 
+}
+
+export function GetPastCustomerRentingOnSuccess(payload){
+    return {
+        type: GET_PAST_CUSTOMER_RENTINGS_ON_SUCCESS,
+        payload: payload
+    }; 
+}
+
+export function createCustomerRenting(payload){
+    return {
+        type: CREATE_CUSTOMER_RENTING,
         payload: payload
     }; 
 }

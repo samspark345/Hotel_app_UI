@@ -67,11 +67,10 @@ const applyFilters = (action$, state$) =>
                 const star_rating = selectedFilters.star_rating.length > 0? selectedFilters.star_rating.join(',') : ''
                 const city = selectedFilters.city.length > 0? selectedFilters.city[0] : ''
                 const country = selectedFilters.country.length > 0? selectedFilters.country[0] : ''
-                const num_rooms = selectedFilters.No_Of_Rooms.length > 0? selectedFilters.No_Of_Rooms.join(',') : ''
                 const chain_name = selectedFilters.chain_name.length > 0? selectedFilters.chain_name.join(',') : ''
 
                 //Make filter query to api
-                query = `${baseUrl}hotels?chain_name=${chain_name}&star_rating=${star_rating}&city=${city}&country=${country}&num_rooms=${num_rooms}`
+                query = `${baseUrl}hotels?chain_name=${chain_name}&star_rating=${star_rating}&city=${city}&country=${country}&num_rooms=`
                 options.url = query
                 console.log(options)
 

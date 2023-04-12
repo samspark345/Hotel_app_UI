@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './highlights.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { Gethotels, ModifySelectedFilters } from '../redux/Actions/hotelActions';
+import { Gethotels, ModifySelectedFilters, resetHotelFilters } from '../redux/Actions/hotelActions';
 import HotelCards from './HotelCards';
 import MultiSelectDropdown from './MultiSelectDropdown';
 import TextField from '@mui/material/TextField';
@@ -13,7 +13,7 @@ import DateForm from './DateForm';
 import { red } from '@mui/material/colors';
 import PriceForm from './PriceForm';
 import { Button } from '@mui/material';
-import { applyRoomFilters, GetRooms, ModifySelectedRoomFilters } from '../redux/Actions/hotelRoomActions';
+import { applyRoomFilters, GetRooms, ModifySelectedRoomFilters, resetRoomFilters } from '../redux/Actions/hotelRoomActions';
 import RoomCards from './RoomCards';
 export class HotelRooms extends Component {
 
@@ -37,6 +37,11 @@ export class HotelRooms extends Component {
   }
 
   componentDidMount(){
+    this.props.actions.resetRoomFilters()
+  }
+
+  componentWillUnmount(){
+    // this.props.actions.resetRoomFIlters()
   }
 
   componentDidUpdate(){
@@ -65,7 +70,6 @@ export class HotelRooms extends Component {
     // this.props.hotelState.selectedHotelId.length > 0 &&
     let value = null
     console.log(this.props.hotelRoomState)
-    console.log(this.props.hotelState.selectedHotelInfo)
     const error = this.props.hotelRoomState.selectedFilters.Start_date > this.props.hotelRoomState.selectedFilters.End_date
     || this.props.hotelRoomState.selectedFilters.Start_date.length < 1 || this.props.hotelRoomState.selectedFilters.End_date.length < 1
     return (
@@ -142,7 +146,10 @@ const mapDispatchToProps = (dispatch) => ({
     getRooms : GetRooms,
     populateFilters : populateAllFIlters,
     modifySelectedRoomFilters : ModifySelectedRoomFilters,
-    applyRoomFilters : applyRoomFilters
+    applyRoomFilters : applyRoomFilters,
+    resetHotelFilters : resetHotelFilters,
+    resetRoomFilters : resetRoomFilters
+
   }, 
   dispatch)
 });
