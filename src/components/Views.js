@@ -28,7 +28,7 @@ export class Views extends Component {
     filters : [],
     cityCapacityColumnDefs : [
       { headerName: "City", field: "city", resizable: "true" },
-      { headerName: "No Of Rooms", field: "num_of_rooms", resizable: "true" },
+      { headerName: "Avaailable Rooms", field: "available_rooms", resizable: "true" },
     ],
 
     hotelCapacityColumnDefs : [
@@ -54,7 +54,7 @@ export class Views extends Component {
 
   componentDidMount(){
     this.props.actions.getHotelCapacityView();
-    
+    this.props.actions.getCityCapacityView();
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -64,6 +64,13 @@ export class Views extends Component {
       this.setState({
         ...this.state,
         hotelCapacityViewRows: this.props.viewsState.hotelCapacityView
+      })
+    }
+
+    if (this.props.viewsState.cityCapacityView !== prevProps.viewsState.cityCapacityView){
+      this.setState({
+        ...this.state,
+        cityCapacityViewRows: this.props.viewsState.cityCapacityView
       })
     }
     // if (this.props.viewsState.cityCapacityView !== this.state.cityCapacityViewRows){
@@ -92,9 +99,9 @@ export class Views extends Component {
     return (
       <div className='highlightsPageContainer'>
           
-          {/* <div style={{ height: "500px", width: "100%", padding: '100px', alignSelf: 'center', justifyContent: 'center'}}>
-            <GridwithData gridLabel={'Available Rooms in Cities'} columnDefs ={this.state.cityCapacityColumnDefs} rowData={this.state.currentBooking} showDelete deleteRows={this.deleteBookings}/>
-          </div> */}
+          <div style={{ height: "500px", width: "100%", padding: '100px', alignSelf: 'center', justifyContent: 'center'}}>
+            <GridwithData gridLabel={'Available Rooms in Cities'} columnDefs ={this.state.cityCapacityColumnDefs} rowData={this.state.cityCapacityViewRows} />
+          </div>
           
           <div style={{ height: "500px", width: "100%", padding: '100px', alignSelf: 'center', justifyContent: 'center'}}>
             <GridwithData gridLabel={'Available Rooms in different Hotels'} columnDefs ={this.state.hotelCapacityColumnDefs} 

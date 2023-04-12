@@ -69,7 +69,9 @@ const getCityCapacityView = (action$, state$) =>
                   
                 console.log(action)
                 console.log(state$.value)
-                const baseUrl = 'http://localhost:3001/queries/bookings/'
+                const baseUrl = ' http://localhost:3001/queries/cities/available_rooms'
+
+                options.url = baseUrl
 
                 console.log(options)
                 axios.request(
