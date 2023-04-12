@@ -8,6 +8,8 @@ export const GET_CUSTOMER_RENTING_ARCHIVES = 'GET_CUSTOMER_RENTING_ARCHIVES'
 export const GET_CUSTOMER_RENTING_ARCHIVES_ON_SUCCESS = 'GET_CUSTOMER_RENTING_ARCHIVES_ON_SUCCESS'
 export const GET_CUSTOMER_PROFILE = 'GET_CUSTOMER_PROFILE'
 export const GET_CUSTOMER_PROFILE_ON_SUCCESS = 'GET_CUSTOMER_PROFILE_ON_SUCCESS'
+export const UPDATE_CUSTOMER_PROFILE = 'UPDATE_CUSTOMER_PROFILE'
+export const UPDATE_CUSTOMER_PROFILE_ON_SUCCESS = 'UPDATE_CUSTOMER_PROFILE_ON_SUCCESS'
 
 
 
@@ -80,6 +82,14 @@ export function GetCustomerProfileOnSuccess(payload){
         payload: payload
     };
 }
+
+export function UpdateCustomerProfile(payload){
+    return {
+        type: UPDATE_CUSTOMER_PROFILE,
+        payload: payload
+    };
+}
+
 // export function populateAllFIlters(payload){
 //     return {
 //         type: POPULATE_ALL_FILTERS,
