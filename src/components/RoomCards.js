@@ -38,7 +38,7 @@ export default function RoomCards({
         <Card sx={{ maxWidth: 400, minWidth: 300 }}>
             <CardMedia
                 sx={{ height: 140 }}
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image={require('../images/rooms.png')}
                 title="green iguana"
             />
             <CardContent>

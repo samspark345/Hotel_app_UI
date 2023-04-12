@@ -157,7 +157,7 @@ class GridwithData extends Component {
 
                 handleClose={()=> {this.setState({
                   ...this.state,
-                  openDialog: false
+                  openRentDialog: false
                 })}}
 
 

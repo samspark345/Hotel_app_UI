@@ -193,6 +193,19 @@ const BookHotelsEmployee = (action$, state$) =>
                 console.log(options)
                 axios.request(
                     options
+                )
+
+                options.url = 'http://localhost:3001/insert/rent'
+                options.data = {
+                    customer_id: action.payload.customer_id,
+                    start: hotelRoomState.selectedFilters.Start_date,
+                    end: hotelRoomState.selectedFilters.End_date,
+                    hotel_id: hotelRoomState.selectedHotelInfo.hotel_id,
+                    room_number: action.payload.room_no,
+                }
+                options.method = 'POST'
+                axios.request(
+                    options
                 ).then((response) => {
                     console.log(response.data)
                     observer.next(applyRoomFilters());

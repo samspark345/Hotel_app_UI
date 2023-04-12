@@ -23,6 +23,7 @@ export class CustomerProfile extends Component {
         // Second boolean value to determine if field is editable
         this.state = {
           customerProfile:{
+            customer_id: "",
             first_name: "",
             last_name: "",
             phone_number: "",
@@ -164,6 +165,15 @@ export class CustomerProfile extends Component {
                     disabled={true}
                     inputProps={{pattern: "[0-9]{9}" }}
                     value={this.state.customerProfile.ssn_sin}
+                    onChange={this.handleChange}
+                  />
+
+                  <TextField
+                    required
+                    name="customer_id"
+                    label="Customer ID"
+                    disabled={true}
+                    value={this.state.customerProfile.customer_id}
                     onChange={this.handleChange}
                   />
 

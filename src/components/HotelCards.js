@@ -49,7 +49,7 @@ export default function HotelCards({
         <Card sx={{ maxWidth: 400, minWidth: 300 }}>
             <CardMedia
                 sx={{ height: 140 }}
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image={require('../images/hotels.png')}
                 title="green iguana"
             />
             <CardContent>
