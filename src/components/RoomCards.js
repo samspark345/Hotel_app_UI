@@ -8,8 +8,9 @@ import Typography from '@mui/material/Typography';
 import './hotelCard.css'
 import { PopUpDialog } from './PopUpDialog';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { bookRoom } from '../redux/Actions/hotelRoomActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { bookRoom, bookRoomEmployee } from '../redux/Actions/hotelRoomActions';
+import { TextField } from '@material-ui/core';
 
 export default function RoomCards({
     room_no,
@@ -30,6 +31,8 @@ export default function RoomCards({
 
     const [openDialogue, setOpenDialogue] = useState(false)
     const dispatch = useDispatch()
+    const userState = useSelector((state) => state.User)
+    const [customerIdText, setCustomerIdText] = useState('')
   return (
     <div className='hotelCard'>
         <Card sx={{ maxWidth: 400, minWidth: 300 }}>
@@ -93,18 +96,30 @@ export default function RoomCards({
 
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={()=>{setOpenDialogue(true)}}>Book</Button>
+                <Button size="small" onClick={()=>{setOpenDialogue(true)}}>{userState.customerInfo? 'Book': 'Rent'}</Button>
                 <Button size="small">Learn More</Button>
             </CardActions>
 
-            <PopUpDialog title={'Are you sure?'} 
-                content={'Do you wanna book this room?'}
+            <PopUpDialog title={userState.customerInfo? 'Are you sure?' : 'please type customer Id'} 
+                content={userState.customerInfo? 'Do you wanna book this room?':
+                 <TextField 
+                    value={customerIdText}
+                    onChange={(event) => {
+                        setCustomerIdText(event.target.value)
+                    }}
+                 />}
                 open={openDialogue}
                 handleClose={()=> {setOpenDialogue(false)}}
                 handleConfirm={()=> {
+                    userState.customerInfo?
                     dispatch(bookRoom({
                         room_no,
                         
+                    })):
+
+                    dispatch(bookRoomEmployee({
+                        room_no,
+                        customer_id: customerIdText
                     }))
                     setOpenDialogue(false)
                 }}

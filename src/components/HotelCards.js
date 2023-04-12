@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './hotelCard.css'
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectHotel } from '../redux/Actions/hotelRoomActions';
 
 
@@ -36,7 +36,14 @@ export default function HotelCards({
     email,
     phone_number
 }) {
+
+
+    const userState = useSelector((state) => state.User)
     const dispatch = useDispatch()
+
+    const deleteHotel = () => {
+        
+    }
   return (
     <div className='hotelCard'>
         <Card sx={{ maxWidth: 400, minWidth: 300 }}>
@@ -84,7 +91,7 @@ export default function HotelCards({
                 }, dispatch)} >
                     <Button size="small">Rooms</Button>
                 </Link>
-                <Button size="small">Learn More</Button>
+                {/* {userState.employeeInfo?.managerid && <Button size="small" onClick={deleteHotel()}>Delete</Button>} */}
             </CardActions>
         </Card>
     </div>

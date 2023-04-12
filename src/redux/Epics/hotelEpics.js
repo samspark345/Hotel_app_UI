@@ -52,6 +52,30 @@ const getHotels = (action$, state$) =>
         })
     )
 
+const deleteHotel = (action$, state$) =>
+    action$.pipe(
+        ofType(GET_HOTELS),
+        mergeMap((action) => {
+            return new Observable((observer) => {
+                
+                const options = {
+                    method: 'GET',
+                    url: 'http://localhost:3001/delete/hotel',
+                };
+                const baseUrl = 'http://localhost:3001/delete/hotel'
+                options.url = `${baseUrl}/${action.payload.hotel_id}`
+                console.log('dispatched')
+                axios.request(
+                    options
+                ).then((response) => {
+                    console.log(response)
+                    observer.next(applyFilters(response.data.rows));
+                    observer.complete()
+                    console.log(state$.value)
+                })
+            })
+        })
+    )
 
 
 const applyFilters = (action$, state$) =>

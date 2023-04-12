@@ -8,6 +8,7 @@ import { employeeCustomerBookingsEpic } from '../Epics/employeeCustomerBookingsE
 import { customerBookingsEpics } from '../Epics/customerBookingsEpic';
 import { customerProfileEpic } from '../Epics/customerProfileEpic';
 import { viewsEpic } from '../Epics/viewsEpic';
+import { archiveEpics } from '../Epics/archiveEpics';
 
 
 export const rootEpic = combineEpics(
@@ -18,5 +19,6 @@ export const rootEpic = combineEpics(
   customerBookingsEpics,
   employeeCustomerBookingsEpic,
   customerProfileEpic,
-  viewsEpic
+  viewsEpic,
+  archiveEpics,
 );

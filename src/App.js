@@ -20,6 +20,7 @@ import CustomerProfile from './components/CustomerProfile';
 import { useEffect } from 'react';
 import EmployeeBookingsPage from './components/EmployeeBookingsPage';
 import Views from './components/Views';
+import Archives from './components/Archives';
 
 
 const RenderLayout = ({children}) => {
@@ -127,6 +128,14 @@ function App() {
               element={
                 <RenderLayout>
                   <Views />
+                </RenderLayout>
+              } 
+          />
+          <Route 
+              exact path='/archives' 
+              element={
+                <RenderLayout>
+                  <Archives />
                 </RenderLayout>
               } 
           />

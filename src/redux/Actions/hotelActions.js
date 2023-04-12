@@ -6,6 +6,7 @@ export const FILTER_HOTEL_RESULT_ON_SUCCESS = 'FILTER_HOTEL_RESULT_ON_SUCCESS'
 export const APPLY_HOTEL_FILTERS = 'APPLY_HOTEL_FILTERS'
 export const APPLY_HOTEL_FILTERS_ON_SUCCESS = 'APPLY_HOTEL_FILTERS_ON_SUCCESS'
 export const RESET_HOTEL_FILTERS = 'RESET_HOTEL_FILTERS'
+export const DELETE_HOTEL = 'DELETE_HOTEL'
 
 
 
@@ -60,6 +61,13 @@ export function applyFilters(){
 export function applyFiltersOnSuccess(payload){
     return {
         type: APPLY_HOTEL_FILTERS_ON_SUCCESS,
+        payload
+    }
+}
+
+export function deleteHotel(payload){
+    return {
+        type: DELETE_HOTEL,
         payload
     }
 }

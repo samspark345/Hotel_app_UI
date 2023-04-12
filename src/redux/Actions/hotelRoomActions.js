@@ -5,6 +5,7 @@ export const APPLY_ROOM_FILTERS = 'APPLY_ROOM_FILTERS'
 export const APPLY_ROOM_FILTERS_ON_SUCCESS = 'APPLY_ROOM_FILTERS_ON_SUCCESS'
 export const SELECT_HOTEL = 'SELECT_HOTEL'
 export const BOOK_ROOM = 'BOOK_ROOM'
+export const BOOK_ROOM_EMPLOYEE = 'BOOK_ROOM_EMPLOYEE'
 export const BOOK_ROOM_SUCCESS = 'BOOK_ROOM_SUCCESS'
 export const RESET_ROOM_FILTERS = 'RESET_ROOM_FILTERS'
 
@@ -71,6 +72,13 @@ export function bookRoom(payload){
 export function bookRoomOnSuccess(payload){
     return {
         type: BOOK_ROOM_SUCCESS,
+        payload
+    }; 
+}
+
+export function bookRoomEmployee(payload){
+    return {
+        type: BOOK_ROOM_EMPLOYEE,
         payload
     }; 
 }
