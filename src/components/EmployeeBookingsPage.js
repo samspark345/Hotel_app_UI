@@ -162,7 +162,7 @@ export class BookingPage extends Component {
         booking.booking_start_date = start_date
         booking.booking_end_date = end_date
   
-        currentBooking.push(booking)
+        !booking.checked_in && currentBooking.push(booking)
   
       })  
 

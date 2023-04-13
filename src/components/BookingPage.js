@@ -62,8 +62,9 @@ export class BookingPage extends Component {
   }
 
   deleteBookings(bookingsToDelete){
-    this.props.actions.deleteBookings(bookingsToDelete)
-    this.props.actions.getCustomerBooking()
+    this.props.actions.deleteBookings(bookingsToDelete);
+    this.props.actions.getCustomerBooking();
+    this.sectionBookingByDates()
   }
 
 

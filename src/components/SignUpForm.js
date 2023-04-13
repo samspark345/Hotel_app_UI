@@ -10,7 +10,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import { SignUp } from "../redux/Actions/AuthenticateActions";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +53,7 @@ const SignUpForm = () => {
     });
   };
 
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     if(formState.password != formState.confirmPassword){
@@ -61,7 +62,8 @@ const SignUpForm = () => {
         confirmPassword: '',
       });
     }else{
-      dispatch(SignUp(formState))
+      dispatch(SignUp(formState));
+      navigate('/signin')
     }
     console.log(event)
     console.log(formState);

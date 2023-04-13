@@ -33,6 +33,7 @@ export class Views extends Component {
 
     hotelCapacityColumnDefs : [
       { headerName: "Hotel ID", field: "hotel_id", resizable: "true" },
+      { headerName: "Chain name", field: "chain_name", resizable: "true" },
       { headerName: "Total_Capacity", field: "total_capacity", resizable: "true" },
     ],
 
